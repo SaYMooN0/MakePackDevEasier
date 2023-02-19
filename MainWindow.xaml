@@ -1,0 +1,46 @@
+﻿<Window x:Class="MDE.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MDE"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="850" Width="900">
+
+    <Canvas Background="#2D384A" Height="850" Width="900">
+        <Grid ShowGridLines="False"  Height="850" Width="400">
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <Viewbox Height="40" HorizontalAlignment="Left" Grid.Row="0">
+                <RadioButton GroupName="Type" IsChecked="False" FontWeight="Bold"  VerticalContentAlignment="Center" >Crusher 1 to 1</RadioButton>
+            </Viewbox>
+            <Viewbox Height="40" HorizontalAlignment="Left" Grid.Row="1">
+                <RadioButton GroupName="Type" IsChecked="False" FontWeight="Bold"  VerticalContentAlignment="Center" >Crusher 1 to Many</RadioButton>
+            </Viewbox>
+            <Viewbox Height="40" HorizontalAlignment="Left" Grid.Row="2">
+                <RadioButton GroupName="Type" IsChecked="False" FontWeight="Bold"  VerticalContentAlignment="Center">Polishing</RadioButton>
+            </Viewbox>
+            <Viewbox Height="40" HorizontalAlignment="Left" Grid.Row="3">
+                <RadioButton GroupName="Type" IsChecked="False" FontWeight="Bold"  VerticalContentAlignment="Center">Pressing</RadioButton>
+            </Viewbox>
+            <Viewbox Height="40" HorizontalAlignment="Left" Grid.Row="4">
+                <RadioButton GroupName="Type" IsChecked="False" FontWeight="Bold"  VerticalContentAlignment="Center">Filling</RadioButton>
+            </Viewbox>
+        </Grid>
+        <Button Height="90" Width="270" Canvas.Right="75" Canvas.Top="80" Background="#FF4C2B" Content="Create new recipe" FontSize="30" FontWeight="Bold" Click="CreateRecipe_Click">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="15"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+    </Canvas>
+</Window>
