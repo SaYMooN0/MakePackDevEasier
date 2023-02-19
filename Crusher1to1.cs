@@ -108,6 +108,9 @@ namespace MDE
                 inputStr = inputStr.Substring(1, inputStr.Length - 1);
             }
             allTheRecipes +=Create.Crusher1to1(inputStr, isTag, outputStr, countDbl, energyDbl);
+            allTheRecipes += ThermalExpansion.Crusher1to1(inputStr, isTag, outputStr, countDbl, energyDbl);
+            allTheRecipes += Mekanism.Crusher1to1(inputStr, isTag, outputStr, countDbl);
+            allTheRecipes += ImmersiveEngineering.Crusher1to1(inputStr, isTag, outputStr, countDbl, energyDbl);
             newRecipe.Text = allTheRecipes;
         }
     }

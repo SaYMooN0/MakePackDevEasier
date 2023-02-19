@@ -20,19 +20,19 @@
                 <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>
             <Viewbox Height="40" HorizontalAlignment="Left" Grid.Row="0">
-                <RadioButton GroupName="Type" IsChecked="False" FontWeight="Bold"  VerticalContentAlignment="Center" >Crusher 1 to 1</RadioButton>
+                <RadioButton GroupName="Type" IsChecked="False" FontWeight="Bold"  VerticalContentAlignment="Center"  x:Name="Crusher1to1">Crusher 1 to 1</RadioButton>
             </Viewbox>
             <Viewbox Height="40" HorizontalAlignment="Left" Grid.Row="1">
-                <RadioButton GroupName="Type" IsChecked="False" FontWeight="Bold"  VerticalContentAlignment="Center" >Crusher 1 to Many</RadioButton>
+                <RadioButton GroupName="Type" IsChecked="False" FontWeight="Bold"  VerticalContentAlignment="Center"  x:Name="Crusher1toMany">Crusher 1 to Many</RadioButton>
             </Viewbox>
             <Viewbox Height="40" HorizontalAlignment="Left" Grid.Row="2">
-                <RadioButton GroupName="Type" IsChecked="False" FontWeight="Bold"  VerticalContentAlignment="Center">Polishing</RadioButton>
+                <RadioButton GroupName="Type" IsChecked="False" FontWeight="Bold"  VerticalContentAlignment="Center" x:Name="Polishing">Polishing</RadioButton>
             </Viewbox>
             <Viewbox Height="40" HorizontalAlignment="Left" Grid.Row="3">
-                <RadioButton GroupName="Type" IsChecked="False" FontWeight="Bold"  VerticalContentAlignment="Center">Pressing</RadioButton>
+                <RadioButton GroupName="Type" IsChecked="False" FontWeight="Bold"  VerticalContentAlignment="Center"  x:Name="Pressing">Pressing</RadioButton>
             </Viewbox>
             <Viewbox Height="40" HorizontalAlignment="Left" Grid.Row="4">
-                <RadioButton GroupName="Type" IsChecked="False" FontWeight="Bold"  VerticalContentAlignment="Center">Filling</RadioButton>
+                <RadioButton GroupName="Type" IsChecked="False" FontWeight="Bold"  VerticalContentAlignment="Center" x:Name="Filling">Filling</RadioButton>
             </Viewbox>
         </Grid>
         <Button Height="90" Width="270" Canvas.Right="75" Canvas.Top="80" Background="#FF4C2B" Content="Create new recipe" FontSize="30" FontWeight="Bold" Click="CreateRecipe_Click">

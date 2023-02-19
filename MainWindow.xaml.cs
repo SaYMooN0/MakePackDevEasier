@@ -24,22 +24,48 @@ namespace MDE
         {
             InitializeComponent();
         }
-        enum recipeType {Crusher1to1, Crusher1toMany, Polishing, Pressing, Filling };
+        enum recipeType {Crusher1to1, Crusher1toMany, Polishing, Pressing, Filling, Nothing };
         private void CreateRecipe_Click(object sender, RoutedEventArgs e)
         {
+            bool isChosen = true;
             Window newRecipeWin= SecondaryWindow.recipeWindow();
             Canvas windowContent=new Canvas();
-            if (chosenType() == recipeType.Crusher1to1)
+            recipeType myChosenType = chosenType();
+            if (myChosenType == recipeType.Nothing)
+            {
+                MessageBox.Show("Choose recipe type");
+                isChosen = false;
+            }
+            else if (myChosenType == recipeType.Crusher1to1)
             {
                 Crusher1to1 c = new Crusher1to1();
                 windowContent = c.getWindowContent(newRecipeWin);
             }
-            newRecipeWin.Content=windowContent;
-            newRecipeWin.Show();
+            else
+            {
+                MessageBox.Show("Your recipe type is: "+myChosenType.ToString());
+                isChosen = false;
+            }
+            if (isChosen)
+            {
+                newRecipeWin.Content = windowContent;
+                newRecipeWin.Show();
+            }
         }
         private recipeType chosenType()
         {
-            return recipeType.Crusher1to1;
+            if ((bool)Crusher1to1.IsChecked)
+                return recipeType.Crusher1to1;
+            else if ((bool)Crusher1toMany.IsChecked)
+                return recipeType.Crusher1toMany;
+            else if ((bool)Polishing.IsChecked)
+                return recipeType.Polishing;
+            else if ((bool)Pressing.IsChecked)
+                return recipeType.Pressing;
+            else if ((bool)Filling.IsChecked)
+                return recipeType.Filling;
+            else return recipeType.Nothing; 
+            
         }
     }
 }

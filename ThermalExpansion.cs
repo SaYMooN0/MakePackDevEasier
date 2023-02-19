@@ -3,22 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
 
 namespace MDE
 {
-    internal class Create //class for the Create Mod
+    internal class ThermalExpansion
     {
-        static string millingType = "\"type\": \"create:milling\"";
+        static string pulverizerType = "\"type\": \"thermal:pulverizer\"";
         public static string Crusher1to1(string input, bool isTag, string output, int count, double energy)
         {
-            string recipe = millingType+','+SF.ingredients;
+            string recipe = pulverizerType + ',' + SF.ingredients;
             if (isTag)
                 recipe += $"[{SF.wrapInTag(input)}]";
             else
                 recipe += $"[{SF.wrapInItem(input)}]";
-            recipe += ','+SF.result + SF.wrapInItem(output, count)+','+SF.processTime(energy+20);
+            recipe += ',' + SF.result + SF.wrapInItem(output, count) + ',' + SF.energyMod(energy);
             return SF.wrapInCustom(recipe);
         }
     }
