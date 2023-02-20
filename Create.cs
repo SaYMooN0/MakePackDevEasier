@@ -24,6 +24,13 @@ namespace MDE
         }
         public static string Polishing(string input, bool isTag, string output)//WIP
         {
+            string recipe = polishingType + ',' + SF.ingredients;
+            if (isTag)
+                recipe += $"[{SF.wrapInTag(input)}]";
+            else
+                recipe += $"[{SF.wrapInItem(input)}]";
+            recipe += ',' + SF.results + $"[{SF.wrapInItem(output)}]";
+            return SF.wrapInCustom(recipe);
         }
     }
 }
