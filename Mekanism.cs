@@ -13,7 +13,17 @@ namespace MDE
                 recipe += SF.wrapInTag(input);
             else
                 recipe += SF.wrapInItem(input);
-            recipe += ',' + SF.result + SF.wrapInItem(output, count);
+            recipe += ',' + SF.output + SF.wrapInItem(output, count);
+            return SF.wrapInCustom(recipe);
+        }
+        public static string Polishing(string input, bool isTag, string output)//WIP
+        {
+            string recipe = polishingType + ',' + SF.input;
+            if (isTag)
+                recipe += SF.wrapInTag(input);
+            else
+                recipe += SF.wrapInItem(input);
+            recipe += ',' + SF.output + SF.wrapInItem(output);
             return SF.wrapInCustom(recipe);
         }
         public static string Polishing(string input, bool isTag, string output)//WIP

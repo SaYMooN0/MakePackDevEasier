@@ -41,6 +41,11 @@ namespace MDE
                 Crusher1to1 c = new Crusher1to1();
                 windowContent = c.getWindowContent(newRecipeWin);
             }
+            else if (myChosenType == recipeType.Polishing)
+            {
+                Polishing c = new Polishing();
+                windowContent = c.getWindowContent(newRecipeWin);
+            }
             else
             {
                 MessageBox.Show("Your recipe type is: "+myChosenType.ToString());

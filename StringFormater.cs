@@ -3,7 +3,9 @@
     public class SF//String formating class
     {
         public const string result = "\"result\":";
+        public const string results = "\"results\":";
         public const string input = "\"input\":";
+        public const string output = "\"output\":";
         public const string ingredients = "\"ingredients\":";
         static public string count(int a){ return "\"count\":"+a.ToString(); }
         static public string processTime(double a){ return "\"processingTime\":" + (a).ToString(); }
