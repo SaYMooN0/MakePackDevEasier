@@ -14,7 +14,7 @@ namespace MDE
         public static Window recipeWindow()
         {
             Window w= new Window();
-            w.Height = 500;
+            w.Height = 520;
             w.Width = 1000;
             
             return w;

@@ -19,7 +19,7 @@ namespace MDE
                 recipe += $"[{SF.wrapInTag(input)}]";
             else
                 recipe += $"[{SF.wrapInItem(input)}]";
-            recipe += ',' + SF.result + SF.wrapInItem(output, count) + ',' + SF.processTime(energy + 20);
+            recipe += ',' + SF.results + SF.wrapInItem(output, count) + ',' + SF.processTime(energy + 20);
             return SF.wrapInCustom(recipe);
         }
         public static string Polishing(string input, bool isTag, string output)//WIP

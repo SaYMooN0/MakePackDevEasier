@@ -12,7 +12,7 @@ namespace MDE
     internal class Crusher1to1
     {
         TextBox input, output, outputCount, energy, newRecipe;
-        Button createRecipeButton;
+        Button createRecipeButton,copyToClipboardButton;
         SolidColorBrush backBrush, orangeBrush;
         string inputStr, outputStr;
         double energyDbl;
@@ -26,8 +26,10 @@ namespace MDE
             newRecipe = new TextBox { Height = 120, Width = 730, FontSize = 18, FontWeight = FontWeights.Bold };
             outputCount = new TextBox { Height = 40, Width = 130, FontSize = 24, FontWeight = FontWeights.Bold, Text="1" };
             energy = new TextBox { Height = 40, Width = 130, FontSize = 24, FontWeight = FontWeights.Bold, Text="100" };
-            createRecipeButton = new Button() { Height = 120, Width = 120, FontWeight = FontWeights.Bold, Content = "Crete Recipe", HorizontalAlignment = HorizontalAlignment.Center, FontSize = 18, Background=orangeBrush };
+            copyToClipboardButton = new Button() { Height = 40, Width = 120, FontWeight = FontWeights.Bold, Content = "Copy", HorizontalAlignment = HorizontalAlignment.Center, FontSize = 18, Background = orangeBrush };
+            createRecipeButton = new Button() { Height = 120, Width = 120, FontWeight = FontWeights.Bold, Content = "Crete Recipe", HorizontalAlignment = HorizontalAlignment.Center, FontSize = 18, Background = orangeBrush };
             createRecipeButton.Click += Create_Click;
+            copyToClipboardButton.Click += copyToClipboard_Click;
 
         }
         public  Canvas getWindowContent(Window win)
@@ -72,8 +74,11 @@ namespace MDE
             Canvas.SetLeft(newRecipe, 200);
             Canvas.SetTop(newRecipe, 300);
 
-
+            c.Children.Add(copyToClipboardButton);
+            Canvas.SetLeft(copyToClipboardButton, 810);
+            Canvas.SetTop(copyToClipboardButton, 430);
             return c;
+
         }
         void Create_Click(object sender, RoutedEventArgs e)
         {
@@ -87,6 +92,13 @@ namespace MDE
             if (!String.IsNullOrEmpty(input.Text) && !String.IsNullOrEmpty(output.Text))
                 return false;
             return true;
+        }
+        void copyToClipboard_Click(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrEmpty(newRecipe.Text))
+                MessageBox.Show("Recipe is empty");
+            else
+                Clipboard.SetText(newRecipe.Text);
         }
         bool isCorrectInput()
         {
