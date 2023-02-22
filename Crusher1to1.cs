@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows;
 using System.Windows.Media;
+using System.Threading;
+using System.Diagnostics;
 
 namespace MDE
 {
@@ -93,12 +95,25 @@ namespace MDE
                 return false;
             return true;
         }
-        void copyToClipboard_Click(object sender, RoutedEventArgs e)
+        private async void copyToClipboard_Click(object sender, RoutedEventArgs e)//TODO
         {
             if (string.IsNullOrEmpty(newRecipe.Text))
                 MessageBox.Show("Recipe is empty");
             else
+            {
                 Clipboard.SetText(newRecipe.Text);
+                Task t = Task.Run(() => copyToClipboardButton.Dispatcher.Invoke(new Action(delegate
+                {
+                    copyToClipboardButton.Content = "Copied";
+                    MessageBox.Show("11");
+                    await Task.Delay(500);//TODO
+                    MessageBox.Show("22");
+                    copyToClipboardButton.Content = "Copy";
+                })));
+
+
+
+            }
         }
         bool isCorrectInput()
         {
