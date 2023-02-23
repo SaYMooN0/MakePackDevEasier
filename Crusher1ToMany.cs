@@ -3,6 +3,8 @@ using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows;
 using System.Windows.Media;
+using System.Collections.Generic;
+
 namespace MDE
 {
     internal class Crusher1ToMany
@@ -10,9 +12,9 @@ namespace MDE
         TextBox input, output1, output2, output3, output4, outputCount1, outputCount2, outputCount3, outputCount4, energy, newRecipe;
         Button createRecipeButton, copyToClipboardButton;
         SolidColorBrush backBrush, orangeBrush;
-        string inputStr, outputStr;
+        string inputStr, outputStr1, outputStr2, outputStr3, outputStr4;
         double energyDbl;
-        int countDbl;
+        List<Tuple<string, double>> outputs=new List<Tuple<string, double>>();
         public Crusher1ToMany()
         {
             backBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#2D384A"));
@@ -23,10 +25,10 @@ namespace MDE
             output3 = new TextBox { Height = 40, Width = 260, FontSize = 24, FontWeight = FontWeights.Bold };
             output4 = new TextBox { Height = 40, Width = 260, FontSize = 24, FontWeight = FontWeights.Bold };
             newRecipe = new TextBox { Height = 120, Width = 730, FontSize = 18, FontWeight = FontWeights.Bold };
-            outputCount1 = new TextBox { Height = 40, Width = 130, FontSize = 24, FontWeight = FontWeights.Bold, Text = "1" };
-            outputCount2 = new TextBox { Height = 40, Width = 130, FontSize = 24, FontWeight = FontWeights.Bold, Text = "1" };
-            outputCount3 = new TextBox { Height = 40, Width = 130, FontSize = 24, FontWeight = FontWeights.Bold, Text = "1" };
-            outputCount4 = new TextBox { Height = 40, Width = 130, FontSize = 24, FontWeight = FontWeights.Bold, Text = "1" };
+            outputCount1 = new TextBox { Height = 40, Width = 200, FontSize = 24, FontWeight = FontWeights.Bold, Text = "1" };
+            outputCount2 = new TextBox { Height = 40, Width = 200, FontSize = 24, FontWeight = FontWeights.Bold, Text = "1" };
+            outputCount3 = new TextBox { Height = 40, Width = 200, FontSize = 24, FontWeight = FontWeights.Bold, Text = "1" };
+            outputCount4 = new TextBox { Height = 40, Width = 200, FontSize = 24, FontWeight = FontWeights.Bold, Text = "1" };
             energy = new TextBox { Height = 40, Width = 130, FontSize = 24, FontWeight = FontWeights.Bold, Text = "100" };
             copyToClipboardButton = new Button() { Height = 40, Width = 120, FontWeight = FontWeights.Bold, Content = "Copy", HorizontalAlignment = HorizontalAlignment.Center, FontSize = 18, Background = orangeBrush };
             createRecipeButton = new Button() { Height = 120, Width = 120, FontWeight = FontWeights.Bold, Content = "Crete Recipe", HorizontalAlignment = HorizontalAlignment.Center, FontSize = 18, Background = orangeBrush };
@@ -74,7 +76,7 @@ namespace MDE
             c.Children.Add(outputCount4);
             Canvas.SetLeft(outputCount4, 640);
             Canvas.SetTop(outputCount4, 230);
-            Label outputCountLabel = new Label() { Height = 50, Width = 130, FontSize = 28, FontWeight = FontWeights.Bold, Content = "count:", HorizontalAlignment = HorizontalAlignment.Center };
+            Label outputCountLabel = new Label() { Height = 50, Width = 200, FontSize = 28, FontWeight = FontWeights.Bold, Content = "count/chances:", HorizontalAlignment = HorizontalAlignment.Center };
             c.Children.Add(outputCountLabel);
             Canvas.SetLeft(outputCountLabel, 640);
             Canvas.SetTop(outputCountLabel, 0);
@@ -82,10 +84,10 @@ namespace MDE
             Label energyLabel = new Label() { Height = 50, Width = 130, FontSize = 28, FontWeight = FontWeights.Bold, Content = "energy:", HorizontalAlignment = HorizontalAlignment.Center };
             c.Children.Add(energyLabel);
             c.Children.Add(energy);
-            Canvas.SetLeft(energy, 800);
-            Canvas.SetTop(energy, 50);
-            Canvas.SetLeft(energyLabel, 800);
-            Canvas.SetTop(energyLabel, 0);
+            Canvas.SetLeft(energy, 40);
+            Canvas.SetTop(energy, 140);
+            Canvas.SetLeft(energyLabel, 40);
+            Canvas.SetTop(energyLabel, 90);
             //---------------------------------
             c.Children.Add(createRecipeButton);
             Canvas.SetLeft(createRecipeButton, 40);
@@ -107,12 +109,6 @@ namespace MDE
             else
                 MessageBox.Show("invalid input");
         }
-        bool AnyEmptyFields()//todo
-        {
-            if (!String.IsNullOrEmpty(input.Text) && !String.IsNullOrEmpty(output1.Text))
-                return false;
-            return true;
-        }
         private void copyToClipboard_Click(object sender, RoutedEventArgs e)
         {
             if (string.IsNullOrEmpty(newRecipe.Text))
@@ -128,20 +124,49 @@ namespace MDE
                 })));
             }
         }
-        bool isCorrectInput()//todo
+        bool isCorrectInput()
         {
-            if (AnyEmptyFields())
+            outputs.Clear();
+            if (String.IsNullOrEmpty(input.Text))
                 return false;
-            if (Double.TryParse(energy.Text, out energyDbl) && Int32.TryParse(outputCount1.Text, out countDbl))
-                return true;
-            return false;
+            if (Double.TryParse(energy.Text, out energyDbl))
+            {
+                if (!String.IsNullOrEmpty(output1.Text) && Double.TryParse(outputCount1.Text, out double a))
+                {
+                    outputs.Add(new Tuple<string, double>(removeQuotes(output1.Text), Double.Parse(outputCount1.Text)));
+                    if (!String.IsNullOrEmpty(output2.Text) && Double.TryParse(outputCount2.Text, out a))
+                    {
+                        outputs.Add(new Tuple<string, double>(removeQuotes(output2.Text), Double.Parse(outputCount2.Text)));
+                        if (!String.IsNullOrEmpty(output3.Text) && Double.TryParse(outputCount3.Text, out a))
+                        {
+                            outputs.Add(new Tuple<string, double>(removeQuotes(output3.Text), Double.Parse(outputCount3.Text)));
+                            if (!String.IsNullOrEmpty(output4.Text) && Double.TryParse(outputCount4.Text, out a))
+                            {
+                                outputs.Add(new Tuple<string, double>(removeQuotes(output4.Text), Double.Parse(outputCount4.Text)));
+                            }
+                        }
+                        return true;
+                    }
+                    return true;
+                }
+                return false;
+            }
+            return true;
+        }
+        string removeQuotes(string s)
+        {
+            if (String.IsNullOrEmpty(s))
+                return "";
+            else
+                return s.Substring(1, s.Length - 2);
         }
         private void makeNewRecipe()
         {
+            
             bool isTag = false;
             string allTheRecipes = "";
-            inputStr = input.Text.Substring(1, input.Text.Length - 2);
-            outputStr = output1.Text.Substring(1, output1.Text.Length - 2);
+            allTheRecipes = listToString(outputs);
+            inputStr = removeQuotes(input.Text);
             if (inputStr[0] == '#')
             {
                 isTag = true;
@@ -149,9 +174,15 @@ namespace MDE
             }
             //allTheRecipes += Create.Crusher1ToMany(inputStr, isTag, outputStr, countDbl, energyDbl);
             //allTheRecipes += ThermalExpansion.Crusher1ToMany(inputStr, isTag, outputStr, countDbl, energyDbl);
-            //allTheRecipes += Mekanism.Crusher1ToMany(inputStr, isTag, outputStr, countDbl);
             //allTheRecipes += ImmersiveEngineering.Crusher1ToMany(inputStr, isTag, outputStr, countDbl, energyDbl);
             newRecipe.Text = allTheRecipes;
+        }
+        private string listToString(List<Tuple<string, double>> list)
+        {
+            string s = "";
+            for (int i = 0; i < list.Count; i++)
+                s += "Item: " + list[i].Item1.ToString() + "  Chances: " + list[i].Item2.ToString()+"\n";
+            return s;
         }
     }
 }
