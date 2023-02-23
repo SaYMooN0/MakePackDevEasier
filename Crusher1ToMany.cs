@@ -165,14 +165,14 @@ namespace MDE
             
             bool isTag = false;
             string allTheRecipes = "";
-            allTheRecipes = listToString(outputs);
+            allTheRecipes = listToString(outputs)+"\n\n";
             inputStr = removeQuotes(input.Text);
             if (inputStr[0] == '#')
             {
                 isTag = true;
                 inputStr = inputStr.Substring(1, inputStr.Length - 1);
             }
-            //allTheRecipes += Create.Crusher1ToMany(inputStr, isTag, outputStr, countDbl, energyDbl);
+            allTheRecipes += Create.Crusher1ToMany(inputStr,isTag, outputs, energyDbl);
             //allTheRecipes += ThermalExpansion.Crusher1ToMany(inputStr, isTag, outputStr, countDbl, energyDbl);
             //allTheRecipes += ImmersiveEngineering.Crusher1ToMany(inputStr, isTag, outputStr, countDbl, energyDbl);
             newRecipe.Text = allTheRecipes;

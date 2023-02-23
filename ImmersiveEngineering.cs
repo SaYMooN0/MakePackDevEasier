@@ -11,7 +11,7 @@ namespace MDE
         static string millingType = "\"type\": \"immersiveengineering:crusher\"";
         public static string Crusher1to1(string input, bool isTag, string output, int count, double energy)
         {
-            string recipe = millingType + ",\"secondaries\":[]," + SF.result + SF.wrapInItem(output, count) +',' +SF.input;
+            string recipe = millingType + ",\"secondaries\":[]," + SF.result + SF.wrapInItemWithCount(output, count) +',' +SF.input;
             if (isTag)
                 recipe += SF.wrapInTag(input);
             else

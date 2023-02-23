@@ -3,6 +3,7 @@
     public class SF//String formating class
     {
         public const string result = "\"result\":";
+        public const string chance = "\"chance\":";
         public const string results = "\"results\":";
         public const string input = "\"input\":";
         public const string output = "\"output\":";
@@ -13,7 +14,8 @@
         static public string energyMod(double a){ return "\"energy_mod\":" + (a/100).ToString("0.00", System.Globalization.CultureInfo.InvariantCulture); }
         static public string energyRequired(double a){ return "\"energy\":" + ((a*40).ToString()); }
         static public string wrapInItem(string s){return "{\"item\": \'"+s+"\' }";}
-        static public string wrapInItem(string s, int a){return "{\"item\": \'"+s+"\',"+count(a)+" }";}
+        static public string wrapInItemWithCount(string s, int a){return "{\"item\": \'"+s+"\',"+count(a)+" }";}
+        static public string wrapInItemWithChance(string s, double b){return "{\"item\": \'"+s+"\',"+chance+b.ToString("0.00", System.Globalization.CultureInfo.InvariantCulture) +"}";}
         static public string wrapInTag(string s){return "{ \"tag\": \'"+s+"\' }";}
         static public string wrapInCustom(string s){return "event.custom({" + s + "})\n";}
     }

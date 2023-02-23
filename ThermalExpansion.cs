@@ -16,7 +16,7 @@ namespace MDE
                 recipe += $"[{SF.wrapInTag(input)}]";
             else
                 recipe += $"[{SF.wrapInItem(input)}]";
-            recipe += ',' + SF.result + SF.wrapInItem(output, count) + ',' + SF.energyMod(energy);
+            recipe += ',' + SF.result + SF.wrapInItemWithCount(output, count) + ',' + SF.energyMod(energy);
             return SF.wrapInCustom(recipe);
         }
     }
