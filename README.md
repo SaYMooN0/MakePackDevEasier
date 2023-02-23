@@ -1,2 +1,2 @@
 # MakePackDevEasier
-It is a programm to make minecraft modepack development much easier
+It is a programm to make minecraft modepack development (namely recipes adding) much easier
