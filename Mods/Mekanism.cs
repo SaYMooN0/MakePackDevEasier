@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MDE
+namespace MDE.Mods
 {
     internal class Mekanism
     {

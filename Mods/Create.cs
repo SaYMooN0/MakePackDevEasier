@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace MDE
+namespace MDE.Mods
 {
     internal class Create //class for the Create Mod
     {
@@ -48,7 +48,7 @@ namespace MDE
                     recipe += SF.wrapInItemWithChance(l[i].Item1, l[i].Item2);
                 recipe += ",";
             }
-            recipe=recipe.Substring(0, recipe.Length - 1);
+            recipe = recipe.Substring(0, recipe.Length - 1);
             recipe += "]," + SF.processTime(energy + 20);
             return SF.wrapInCustom(recipe);
         }

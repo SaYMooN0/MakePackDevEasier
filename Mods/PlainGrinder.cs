@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MDE
+namespace MDE.Mods
 {
     internal class PlainGrinder
     {

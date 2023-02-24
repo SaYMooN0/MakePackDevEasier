@@ -4,6 +4,7 @@ using System.Windows.Controls;
 using System.Windows;
 using System.Windows.Media;
 using System.Collections.Generic;
+using MDE.Mods;
 
 namespace MDE
 {
@@ -15,6 +16,7 @@ namespace MDE
         string inputStr, outputStr1, outputStr2, outputStr3, outputStr4;
         double energyDbl;
         List<Tuple<string, double>> outputs=new List<Tuple<string, double>>();
+        CheckBox chB_Create, chB_Thermal, chB_IE;
         public Crusher1ToMany()
         {
             backBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#2D384A"));
@@ -32,6 +34,9 @@ namespace MDE
             energy = new TextBox { Height = 40, Width = 130, FontSize = 24, FontWeight = FontWeights.Bold, Text = "100" };
             copyToClipboardButton = new Button() { Height = 40, Width = 120, FontWeight = FontWeights.Bold, Content = "Copy", HorizontalAlignment = HorizontalAlignment.Center, FontSize = 18, Background = orangeBrush };
             createRecipeButton = new Button() { Height = 120, Width = 120, FontWeight = FontWeights.Bold, Content = "Crete Recipe", HorizontalAlignment = HorizontalAlignment.Center, FontSize = 18, Background = orangeBrush };
+            chB_Create = new CheckBox() { Content = "Create", Height = 60, Width = 250, FontSize=22, FontWeight=FontWeights.Bold, IsChecked=true };
+            chB_IE = new CheckBox() { Content = "IE", Height = 60, Width = 250, FontSize=22, FontWeight=FontWeights.Bold, IsChecked = true };
+            chB_Thermal= new CheckBox() { Content = "Themal", Height = 60, Width = 250, FontSize=22, FontWeight=FontWeights.Bold, IsChecked = true };
             createRecipeButton.Click += Create_Click;
             copyToClipboardButton.Click += copyToClipboard_Click;
 
@@ -85,9 +90,9 @@ namespace MDE
             c.Children.Add(energyLabel);
             c.Children.Add(energy);
             Canvas.SetLeft(energy, 40);
-            Canvas.SetTop(energy, 140);
+            Canvas.SetTop(energy, 125);
             Canvas.SetLeft(energyLabel, 40);
-            Canvas.SetTop(energyLabel, 90);
+            Canvas.SetTop(energyLabel, 80);
             //---------------------------------
             c.Children.Add(createRecipeButton);
             Canvas.SetLeft(createRecipeButton, 40);
@@ -99,6 +104,16 @@ namespace MDE
             c.Children.Add(copyToClipboardButton);
             Canvas.SetLeft(copyToClipboardButton, 810);
             Canvas.SetTop(copyToClipboardButton, 430);
+
+            c.Children.Add(chB_Create);
+            Canvas.SetLeft(chB_Create, 40);
+            Canvas.SetTop(chB_Create, 170);
+            c.Children.Add(chB_IE);
+            Canvas.SetLeft(chB_IE, 40);
+            Canvas.SetTop(chB_IE, 200);
+            c.Children.Add(chB_Thermal);
+            Canvas.SetLeft(chB_Thermal, 40);
+            Canvas.SetTop(chB_Thermal, 230);
             return c;
 
         }
@@ -162,7 +177,7 @@ namespace MDE
         }
         private void makeNewRecipe()
         {
-            
+
             bool isTag = false;
             string allTheRecipes = "";
             //allTheRecipes = listToString(outputs)+"\n\n";
@@ -172,9 +187,12 @@ namespace MDE
                 isTag = true;
                 inputStr = inputStr.Substring(1, inputStr.Length - 1);
             }
-            allTheRecipes += Create.Crusher1ToMany(inputStr,isTag, outputs, energyDbl);
-            allTheRecipes += ThermalExpansion.Crusher1ToMany(inputStr,isTag, outputs, energyDbl);
-            allTheRecipes += ImmersiveEngineering.Crusher1ToMany(inputStr, isTag, outputs, energyDbl);
+            if ((bool)chB_Create.IsChecked)
+                allTheRecipes += Create.Crusher1ToMany(inputStr, isTag, outputs, energyDbl);
+            if ((bool)chB_Thermal.IsChecked)
+                allTheRecipes += ThermalExpansion.Crusher1ToMany(inputStr, isTag, outputs, energyDbl);
+            if ((bool)chB_IE.IsChecked)
+                allTheRecipes += ImmersiveEngineering.Crusher1ToMany(inputStr, isTag, outputs, energyDbl);
             newRecipe.Text = allTheRecipes;
         }
         private string listToString(List<Tuple<string, double>> list)

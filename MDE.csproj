@@ -7,4 +7,11 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="Types\Mods\**" />
+    <EmbeddedResource Remove="Types\Mods\**" />
+    <None Remove="Types\Mods\**" />
+    <Page Remove="Types\Mods\**" />
+  </ItemGroup>
+
 </Project>
