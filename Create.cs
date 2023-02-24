@@ -34,8 +34,6 @@ namespace MDE
         }
         public static string Crusher1ToMany(string input, bool isTag, List<Tuple<string, double>> l, double energy)
         {
-
-
             string recipe = millingType + ',' + SF.ingredients;
             if (isTag)
                 recipe += $"[{SF.wrapInTag(input)}],";

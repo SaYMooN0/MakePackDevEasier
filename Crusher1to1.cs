@@ -128,6 +128,7 @@ namespace MDE
             allTheRecipes += ThermalExpansion.Crusher1to1(inputStr, isTag, outputStr, countDbl, energyDbl);
             allTheRecipes += Mekanism.Crusher1to1(inputStr, isTag, outputStr, countDbl);
             allTheRecipes += ImmersiveEngineering.Crusher1to1(inputStr, isTag, outputStr, countDbl, energyDbl);
+            allTheRecipes += PlainGrinder.Crusher1to1(inputStr, isTag, outputStr, countDbl);
             newRecipe.Text = allTheRecipes;
         }
     }

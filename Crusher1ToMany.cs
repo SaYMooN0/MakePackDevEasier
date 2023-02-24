@@ -174,7 +174,7 @@ namespace MDE
             }
             allTheRecipes += Create.Crusher1ToMany(inputStr,isTag, outputs, energyDbl);
             allTheRecipes += ThermalExpansion.Crusher1ToMany(inputStr,isTag, outputs, energyDbl);
-            //allTheRecipes += ImmersiveEngineering.Crusher1ToMany(inputStr, isTag, outputStr, countDbl, energyDbl);
+            allTheRecipes += ImmersiveEngineering.Crusher1ToMany(inputStr, isTag, outputs, energyDbl);
             newRecipe.Text = allTheRecipes;
         }
         private string listToString(List<Tuple<string, double>> list)
