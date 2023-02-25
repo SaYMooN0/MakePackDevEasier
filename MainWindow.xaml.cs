@@ -28,17 +28,17 @@ namespace MDE
             else if (myChosenType == recipeType.Crusher1to1)
             {
                 Crusher1to1 c = new Crusher1to1();
-                windowContent = c.getWindowContent();
+                newRecipeWin = c.getWindow();
             }
             else if (myChosenType == recipeType.Crusher1toMany)
             {
                 Crusher1ToMany c = new Crusher1ToMany();
-                windowContent = c.getWindowContent();
+                newRecipeWin = c.getWindow();
             }
             else if (myChosenType == recipeType.Polishing)
             {
                 Polishing c = new Polishing();
-                windowContent = c.getWindowContent();
+                newRecipeWin = c.getWindow();
             }
             else
             {
@@ -46,10 +46,7 @@ namespace MDE
                 isChosen = false;
             }
             if (isChosen)
-            {
-                newRecipeWin.Content = windowContent;
                 newRecipeWin.Show();
-            }
         }
         private recipeType chosenType()
         {

@@ -5,6 +5,7 @@ using System.Windows;
 using System.Windows.Media;
 using System.Collections.Generic;
 using MDE.Mods;
+using System.Windows.Input;
 
 namespace MDE
 {
@@ -34,7 +35,7 @@ namespace MDE
             chB_IE = new CheckBox() { Content = "IE", Height = 60, Width = 250, FontSize=22, FontWeight=FontWeights.Bold, IsChecked = true };
             chB_Thermal= new CheckBox() { Content = "Themal", Height = 60, Width = 250, FontSize=22, FontWeight=FontWeights.Bold, IsChecked = true };
         }
-        public Canvas getWindowContent()
+        public Window getWindow()
         {
             newWindow = new SecondaryWindow();
             Canvas c = (Canvas)newWindow.secondWindow.Content;
@@ -99,8 +100,15 @@ namespace MDE
             Canvas.SetLeft(createRecipeButton, 40);
             Canvas.SetTop(createRecipeButton, 300);
             createRecipeButton.Click += Create_Click;
-            return c;
+            newWindow.secondWindow.KeyDown += HandleKeyPress;
+            newWindow.secondWindow.Content = c;
+            return newWindow.secondWindow;
 
+        }
+        private void HandleKeyPress(object sender, KeyEventArgs e)
+        {
+            if (Keyboard.IsKeyDown(Key.LeftAlt) && Keyboard.IsKeyDown(Key.Enter))
+                Create_Click(null, new RoutedEventArgs());
         }
         void Create_Click(object sender, RoutedEventArgs e)
         {

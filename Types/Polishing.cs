@@ -7,6 +7,7 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows;
 using MDE.Mods;
+using System.Windows.Input;
 
 namespace MDE
 {
@@ -25,7 +26,7 @@ namespace MDE
             createRecipeButton = new Button() { Height = 120, Width = 120, FontWeight = FontWeights.Bold, Content = "Crete Recipe", HorizontalAlignment = HorizontalAlignment.Center, FontSize = 18, Background = orangeBrush };
             createRecipeButton.Click += Create_Click;
         }
-        public Canvas getWindowContent()
+        public Window getWindow()
         {
             newWindow = new SecondaryWindow();
             Canvas c = (Canvas)newWindow.secondWindow.Content;
@@ -46,7 +47,15 @@ namespace MDE
             c.Children.Add(createRecipeButton);
             Canvas.SetLeft(createRecipeButton, 40);
             Canvas.SetTop(createRecipeButton, 300);
-            return c;
+            newWindow.secondWindow.KeyDown += HandleKeyPress;
+            newWindow.secondWindow.Content = c;
+            return newWindow.secondWindow;
+
+        }
+        private void HandleKeyPress(object sender, KeyEventArgs e)
+        {
+            if (Keyboard.IsKeyDown(Key.LeftAlt) && Keyboard.IsKeyDown(Key.Enter))
+                Create_Click(null, new RoutedEventArgs());
         }
         void Create_Click(object sender, RoutedEventArgs e)
         {

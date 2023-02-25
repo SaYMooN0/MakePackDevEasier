@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Media3D;
 using System.Windows.Shapes;
@@ -35,7 +36,9 @@ namespace MDE
             Canvas.SetLeft(copyToClipboardButton, 810);
             Canvas.SetTop(copyToClipboardButton, 430);
             secondWindow.Content = c;
+            
         }
+        
         private void copyToClipboard_Click(object sender, RoutedEventArgs e)
         {
             if (string.IsNullOrEmpty(newRecipe.Text))

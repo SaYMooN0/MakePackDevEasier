@@ -3,6 +3,7 @@ using System.Windows.Controls;
 using System.Windows;
 using System.Windows.Media;
 using MDE.Mods;
+using System.Windows.Input;
 
 namespace MDE
 {
@@ -31,7 +32,7 @@ namespace MDE
             chB_PlainGrinder = new CheckBox() { Content = "PlainGrinder", Height = 60, Width = 250, FontSize = 24, FontWeight = FontWeights.Bold, IsChecked = false };
             createRecipeButton.Click += Create_Click;
         }
-        public Canvas getWindowContent()
+        public Window getWindow()
         {
             newWindow = new SecondaryWindow();
             Canvas c = (Canvas)newWindow.secondWindow.Content;
@@ -84,8 +85,15 @@ namespace MDE
             c.Children.Add(chB_PlainGrinder);
             Canvas.SetLeft(chB_PlainGrinder, 40);
             Canvas.SetTop(chB_PlainGrinder, 260);
-            return c;
+            newWindow.secondWindow.KeyDown += HandleKeyPress;
+            newWindow.secondWindow.Content = c;
+            return newWindow.secondWindow;
 
+        }
+        private void HandleKeyPress(object sender, KeyEventArgs e)
+        {
+            if (Keyboard.IsKeyDown(Key.LeftAlt) && Keyboard.IsKeyDown(Key.Enter))
+                Create_Click(null, new RoutedEventArgs());
         }
         void Create_Click(object sender, RoutedEventArgs e)
         {
