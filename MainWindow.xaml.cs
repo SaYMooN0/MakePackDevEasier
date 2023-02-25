@@ -1,17 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace MDE
 {
@@ -28,7 +16,8 @@ namespace MDE
         private void CreateRecipe_Click(object sender, RoutedEventArgs e)
         {
             bool isChosen = true;
-            Window newRecipeWin = SecondaryWindow.recipeWindow();
+            SecondaryWindow secondWindow = new SecondaryWindow();
+            Window newRecipeWin = secondWindow.secondWindow;
             Canvas windowContent = new Canvas();
             recipeType myChosenType = chosenType();
             if (myChosenType == recipeType.Nothing)
@@ -39,17 +28,17 @@ namespace MDE
             else if (myChosenType == recipeType.Crusher1to1)
             {
                 Crusher1to1 c = new Crusher1to1();
-                windowContent = c.getWindowContent(newRecipeWin);
+                windowContent = c.getWindowContent();
             }
             else if (myChosenType == recipeType.Crusher1toMany)
             {
                 Crusher1ToMany c = new Crusher1ToMany();
-                windowContent = c.getWindowContent(newRecipeWin);
+                windowContent = c.getWindowContent();
             }
             else if (myChosenType == recipeType.Polishing)
             {
                 Polishing c = new Polishing();
-                windowContent = c.getWindowContent(newRecipeWin);
+                windowContent = c.getWindowContent();
             }
             else
             {

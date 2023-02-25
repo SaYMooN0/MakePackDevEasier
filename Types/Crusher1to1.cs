@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows;
 using System.Windows.Media;
@@ -9,23 +8,21 @@ namespace MDE
 {
     internal class Crusher1to1
     {
-        TextBox input, output, outputCount, energy, newRecipe;
-        Button createRecipeButton, copyToClipboardButton;
-        SolidColorBrush backBrush, orangeBrush;
+        TextBox input, output, outputCount, energy;
+        Button createRecipeButton;
+        SolidColorBrush  orangeBrush;
         string inputStr, outputStr;
         double energyDbl;
         int countDbl;
         CheckBox chB_Create, chB_Thermal, chB_IE, chB_Mekanism, chB_PlainGrinder;
+        SecondaryWindow newWindow;
         public Crusher1to1()
         {
-            backBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#2D384A"));
             orangeBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF4C2B"));
             input = new TextBox { Height = 40, Width = 260, FontSize = 24, FontWeight = FontWeights.Bold };
             output = new TextBox { Height = 40, Width = 260, FontSize = 24, FontWeight = FontWeights.Bold };
-            newRecipe = new TextBox { Height = 120, Width = 730, FontSize = 18, FontWeight = FontWeights.Bold };
             outputCount = new TextBox { Height = 40, Width = 130, FontSize = 24, FontWeight = FontWeights.Bold, Text = "1" };
             energy = new TextBox { Height = 40, Width = 130, FontSize = 24, FontWeight = FontWeights.Bold, Text = "100" };
-            copyToClipboardButton = new Button() { Height = 40, Width = 120, FontWeight = FontWeights.Bold, Content = "Copy", HorizontalAlignment = HorizontalAlignment.Center, FontSize = 18, Background = orangeBrush };
             createRecipeButton = new Button() { Height = 120, Width = 120, FontWeight = FontWeights.Bold, Content = "Crete Recipe", HorizontalAlignment = HorizontalAlignment.Center, FontSize = 18, Background = orangeBrush };
             chB_Create = new CheckBox() { Content = "Create", Height = 60, Width = 250, FontSize = 24, FontWeight = FontWeights.Bold, IsChecked = true };
             chB_IE = new CheckBox() { Content = "IE", Height = 60, Width = 250, FontSize = 24, FontWeight = FontWeights.Bold, IsChecked = true };
@@ -33,13 +30,11 @@ namespace MDE
             chB_Mekanism = new CheckBox() { Content = "Mekanism", Height = 60, Width = 250, FontSize = 24, FontWeight = FontWeights.Bold, IsChecked = true };
             chB_PlainGrinder = new CheckBox() { Content = "PlainGrinder", Height = 60, Width = 250, FontSize = 24, FontWeight = FontWeights.Bold, IsChecked = false };
             createRecipeButton.Click += Create_Click;
-            copyToClipboardButton.Click += copyToClipboard_Click;
-
         }
-        public Canvas getWindowContent(Window win)
+        public Canvas getWindowContent()
         {
-            Window w = win;
-            Canvas c = new Canvas { Height = w.Height, Width = w.Width, Background = backBrush };
+            newWindow = new SecondaryWindow();
+            Canvas c = (Canvas)newWindow.secondWindow.Content;
             Label inputLabel = new Label() { Height = 50, Width = 260, FontSize = 28, FontWeight = FontWeights.Bold, Content = "input:", HorizontalAlignment = HorizontalAlignment.Center };
             c.Children.Add(input);
             c.Children.Add(inputLabel);
@@ -74,14 +69,6 @@ namespace MDE
             c.Children.Add(createRecipeButton);
             Canvas.SetLeft(createRecipeButton, 40);
             Canvas.SetTop(createRecipeButton, 300);
-            c.Children.Add(newRecipe);
-            Canvas.SetLeft(newRecipe, 200);
-            Canvas.SetTop(newRecipe, 300);
-
-            c.Children.Add(copyToClipboardButton);
-            Canvas.SetLeft(copyToClipboardButton, 810);
-            Canvas.SetTop(copyToClipboardButton, 430);
-
             c.Children.Add(chB_Create);
             Canvas.SetLeft(chB_Create, 40);
             Canvas.SetTop(chB_Create, 140);
@@ -113,21 +100,6 @@ namespace MDE
                 return false;
             return true;
         }
-        private void copyToClipboard_Click(object sender, RoutedEventArgs e)
-        {
-            if (string.IsNullOrEmpty(newRecipe.Text))
-                MessageBox.Show("Recipe is empty");
-            else
-            {
-                Clipboard.SetText(newRecipe.Text);
-                Task t = Task.Run(() => copyToClipboardButton.Dispatcher.Invoke(new Action(async delegate
-                {
-                    copyToClipboardButton.Content = "Copied";
-                    await Task.Delay(700);
-                    copyToClipboardButton.Content = "Copy";
-                })));
-            }
-        }
         bool isCorrectInput()
         {
             if (AnyEmptyFields())
@@ -157,7 +129,7 @@ namespace MDE
                 allTheRecipes += ImmersiveEngineering.Crusher1to1(inputStr, isTag, outputStr, countDbl, energyDbl);
             if ((bool)chB_PlainGrinder.IsChecked)
                 allTheRecipes += PlainGrinder.Crusher1to1(inputStr, isTag, outputStr, countDbl);
-            newRecipe.Text = allTheRecipes;
+            newWindow.writeIntoRecipeTextBox(allTheRecipes);
         }
     }
 }

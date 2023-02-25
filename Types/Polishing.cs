@@ -10,31 +10,25 @@ using MDE.Mods;
 
 namespace MDE
 {
-    internal class Polishing//WIP
+    internal class Polishing
     {
-        TextBox input, output, newRecipe;
-        Button createRecipeButton, copyToClipboardButton;
-        SolidColorBrush backBrush, orangeBrush;
+        TextBox input, output;
+        Button createRecipeButton;
+        SolidColorBrush orangeBrush;
         string inputStr, outputStr;
-        double energyDbl;
-        int countDbl;
+        SecondaryWindow newWindow;
         public Polishing()
         {
-            backBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#2D384A"));
             orangeBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF4C2B"));
             input = new TextBox { Height = 40, Width = 260, FontSize = 24, FontWeight = FontWeights.Bold };
             output = new TextBox { Height = 40, Width = 260, FontSize = 24, FontWeight = FontWeights.Bold };
-            newRecipe = new TextBox { Height = 120, Width = 730, FontSize = 18, FontWeight = FontWeights.Bold };
-            copyToClipboardButton = new Button() { Height = 40, Width = 120, FontWeight = FontWeights.Bold, Content = "Copy", HorizontalAlignment = HorizontalAlignment.Center, FontSize = 18, Background = orangeBrush };
             createRecipeButton = new Button() { Height = 120, Width = 120, FontWeight = FontWeights.Bold, Content = "Crete Recipe", HorizontalAlignment = HorizontalAlignment.Center, FontSize = 18, Background = orangeBrush };
             createRecipeButton.Click += Create_Click;
-            copyToClipboardButton.Click += copyToClipboard_Click;
-
         }
-        public Canvas getWindowContent(Window win)
+        public Canvas getWindowContent()
         {
-            Window w = win;
-            Canvas c = new Canvas { Height = w.Height, Width = w.Width, Background = backBrush };
+            newWindow = new SecondaryWindow();
+            Canvas c = (Canvas)newWindow.secondWindow.Content;
             Label inputLabel = new Label() { Height = 50, Width = 260, FontSize = 28, FontWeight = FontWeights.Bold, Content = "input:", HorizontalAlignment = HorizontalAlignment.Center };
             c.Children.Add(input);
             c.Children.Add(inputLabel);
@@ -49,17 +43,9 @@ namespace MDE
             Canvas.SetTop(output, 220);
             Canvas.SetLeft(outputLabel, 340);
             Canvas.SetTop(outputLabel, 170);
-            //---------------------------------
             c.Children.Add(createRecipeButton);
             Canvas.SetLeft(createRecipeButton, 40);
             Canvas.SetTop(createRecipeButton, 300);
-            c.Children.Add(newRecipe);
-            Canvas.SetLeft(newRecipe, 200);
-            Canvas.SetTop(newRecipe, 300);
-
-            c.Children.Add(copyToClipboardButton);
-            Canvas.SetLeft(copyToClipboardButton, 810);
-            Canvas.SetTop(copyToClipboardButton, 430);
             return c;
         }
         void Create_Click(object sender, RoutedEventArgs e)
@@ -68,13 +54,6 @@ namespace MDE
                 makeNewRecipe();
             else
                 MessageBox.Show("invalid input");
-        }
-        void copyToClipboard_Click(object sender, RoutedEventArgs e)
-        {
-            if (string.IsNullOrEmpty(newRecipe.Text))
-                MessageBox.Show("Recipe is empty");
-            else
-                Clipboard.SetText(newRecipe.Text);
         }
         bool isCorrectInput()
         {
@@ -95,7 +74,7 @@ namespace MDE
             }
             allTheRecipes += Create.Polishing(inputStr, isTag, outputStr);
             allTheRecipes += Mekanism.Polishing(inputStr, isTag, outputStr);
-            newRecipe.Text = allTheRecipes;
+            newWindow.writeIntoRecipeTextBox(allTheRecipes);
         }
     }
 }
