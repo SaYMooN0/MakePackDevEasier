@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using MDE.Types;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace MDE
@@ -38,6 +39,11 @@ namespace MDE
             else if (myChosenType == recipeType.Polishing)
             {
                 Polishing c = new Polishing();
+                newRecipeWin = c.getWindow();
+            }
+            else if (myChosenType == recipeType.Filling)
+            {
+                Filling c = new Filling();
                 newRecipeWin = c.getWindow();
             }
             else

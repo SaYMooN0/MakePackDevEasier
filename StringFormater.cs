@@ -10,6 +10,9 @@
         public const string ingredient = "\"ingredient\":";
         public const string xp = "\"experience\" :";
         public const string secondaries = "\"secondaries\" :";
+        public const string amount = "\"amount\":";
+        public const string fluid = "\"fluid\":";
+        public const string nbtEmpty = "\"nbt\": {}";
 
         static public string count(int a){ return "\"count\":"+a.ToString(); }
         static public string chance(double a){ return "\"chance\":" + a.ToString("0.00", System.Globalization.CultureInfo.InvariantCulture); }
