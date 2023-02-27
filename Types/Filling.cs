@@ -19,7 +19,7 @@ namespace MDE.Types
         string inputStr, outputStr, fluidStr;
         int fluidAmountInt;
         SecondaryWindow newWindow;
-        CheckBox chB_Create, chB_Thermal, chB_IF, cbB_DoReducing;
+        CheckBox chB_Create, chB_Thermal, chB_IF, chB_DoReducing;
         public Filling()
         {
             orangeBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF4C2B"));
@@ -31,7 +31,7 @@ namespace MDE.Types
             chB_Create = new CheckBox() { Content = "Create", Height = 60, Width = 250, FontSize = 22, FontWeight = FontWeights.Bold, IsChecked = true };
             chB_IF = new CheckBox() { Content = "Industrial Foregoing", Height = 60, Width = 290, FontSize = 22, FontWeight = FontWeights.Bold, IsChecked = true };
             chB_Thermal = new CheckBox() { Content = "Themal Expansion", Height = 60, Width = 290, FontSize = 22, FontWeight = FontWeights.Bold, IsChecked = true };
-            cbB_DoReducing = new CheckBox() { Content = "Reduce Fluid Consumption?", Height = 60, Width = 310, FontSize = 22, FontWeight = FontWeights.Bold, IsChecked = true };
+            chB_DoReducing = new CheckBox() { Content = "Reduce Fluid Consumption?", Height = 60, Width = 310, FontSize = 22, FontWeight = FontWeights.Bold, IsChecked = true };
             createRecipeButton.Click += Create_Click;
         }
         public Window getWindow()
@@ -70,9 +70,9 @@ namespace MDE.Types
             Canvas.SetLeft(createRecipeButton, 40);
             Canvas.SetTop(createRecipeButton, 300);
             newWindow.secondWindow.KeyDown += HandleKeyPress;
-            c.Children.Add(cbB_DoReducing);
-            Canvas.SetLeft(cbB_DoReducing, 40);
-            Canvas.SetTop(cbB_DoReducing, 165);
+            c.Children.Add(chB_DoReducing);
+            Canvas.SetLeft(chB_DoReducing, 40);
+            Canvas.SetTop(chB_DoReducing, 165);
             c.Children.Add(chB_Create);
             Canvas.SetLeft(chB_Create, 40);
             Canvas.SetTop(chB_Create, 200);
@@ -113,6 +113,7 @@ namespace MDE.Types
             outputStr = output.Text.Substring(1, output.Text.Length - 2);
             fluidAmountInt = Int32.Parse(fluidAmount.Text);
             fluidStr = fluid.Text.Replace("\'", string.Empty);
+            fluidStr = fluid.Text.Replace("\"", string.Empty);
             if (inputStr[0] == '#')
             {
                 isTag = true;
@@ -121,6 +122,14 @@ namespace MDE.Types
             if ((bool)chB_Create.IsChecked)
             {
                 allTheRecipes += Create.Filling(inputStr, isTag, fluidStr, fluidAmountInt, outputStr);
+            }
+            if ((bool)chB_DoReducing.IsChecked)
+            {
+                fluidAmountInt = (int)(0.9* fluidAmountInt);
+            }
+            if ((bool)chB_Thermal.IsChecked)
+            {
+                allTheRecipes += ThermalExpansion.Filling(inputStr, isTag, fluidStr, fluidAmountInt, outputStr);
             }
             newWindow.writeIntoRecipeTextBox(allTheRecipes);
         }

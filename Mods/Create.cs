@@ -55,7 +55,7 @@ namespace MDE.Mods
         }
         public static string Filling(string input, bool isTag,string fluid, int fluidAmount, string output)
         {
-            string recipe = millingType + ',' + SF.ingredients;
+            string recipe = fillingType + ',' + SF.ingredients;
             if (isTag)
                 recipe += $"[{SF.wrapInTag(input)},";
             else
