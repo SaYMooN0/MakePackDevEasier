@@ -131,6 +131,10 @@ namespace MDE.Types
             {
                 allTheRecipes += ThermalExpansion.Filling(inputStr, isTag, fluidStr, fluidAmountInt, outputStr);
             }
+            if ((bool)chB_IF.IsChecked)
+            {
+                allTheRecipes += IndustrialForegoing.Filling(inputStr, isTag, fluidStr, fluidAmountInt, outputStr);
+            } 
             newWindow.writeIntoRecipeTextBox(allTheRecipes);
         }
     }

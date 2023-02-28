@@ -24,5 +24,6 @@
         static public string wrapInItemWithChance(string s, double b){ return "{\"item\": \'" + s + "\'," + chance(b) + '}'; }
         static public string wrapInTag(string s){return "{ \"tag\": \'"+s+"\' }";}
         static public string wrapInCustom(string s){return "event.custom({" + s + "})\n";}
+        static public string wrapInFluidName(string s, int a){return "\"inputFluid\": \"{FluidName:\\\""+s+"\\\",Amount:"+a+"}\""; }
     }
 }
