@@ -18,6 +18,8 @@
                 <RowDefinition></RowDefinition>
                 <RowDefinition></RowDefinition>
                 <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>
             <Viewbox Height="40" HorizontalAlignment="Left" Grid.Row="0">
                 <RadioButton GroupName="Type" IsChecked="False" FontWeight="Bold"  VerticalContentAlignment="Center"  x:Name="Crusher1to1">Crusher 1 to 1</RadioButton>
@@ -33,6 +35,9 @@
             </Viewbox>
             <Viewbox Height="40" HorizontalAlignment="Left" Grid.Row="4">
                 <RadioButton GroupName="Type" IsChecked="False" FontWeight="Bold"  VerticalContentAlignment="Center" x:Name="Filling">Filling</RadioButton>
+            </Viewbox>
+            <Viewbox Height="40" HorizontalAlignment="Left" Grid.Row="5">
+                <RadioButton GroupName="Type" IsChecked="False" FontWeight="Bold"  VerticalContentAlignment="Center" x:Name="SequencedAssembly">Sequenced Assembly(Create)</RadioButton>
             </Viewbox>
         </Grid>
         <Button Height="90" Width="270" Canvas.Right="75" Canvas.Top="80" Background="#FF4C2B" Content="Create new recipe" FontSize="30" FontWeight="Bold" Click="CreateRecipe_Click">

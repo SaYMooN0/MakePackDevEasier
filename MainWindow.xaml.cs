@@ -13,7 +13,7 @@ namespace MDE
         {
             InitializeComponent();
         }
-        enum recipeType { Crusher1to1, Crusher1toMany, Polishing, Pressing, Filling, Nothing };
+        enum recipeType { Crusher1to1, Crusher1toMany, Polishing, Pressing, Filling, Nothing, SequencedAssembly };
         private void CreateRecipe_Click(object sender, RoutedEventArgs e)
         {
             bool isChosen = true;
@@ -46,6 +46,11 @@ namespace MDE
                 Filling c = new Filling();
                 newRecipeWin = c.getWindow();
             }
+            else if (myChosenType == recipeType.Pressing)
+            {
+                Pressing c = new Pressing();
+                newRecipeWin = c.getWindow();
+            }
             else
             {
                 MessageBox.Show("Your recipe type is: " + myChosenType.ToString());
@@ -66,6 +71,8 @@ namespace MDE
                 return recipeType.Pressing;
             else if ((bool)Filling.IsChecked)
                 return recipeType.Filling;
+            else if ((bool)SequencedAssembly.IsChecked)
+                return recipeType.SequencedAssembly;
             else return recipeType.Nothing;
 
         }

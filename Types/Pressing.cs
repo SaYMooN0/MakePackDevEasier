@@ -1,35 +1,33 @@
-﻿using System;
+﻿using MDE.Mods;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Controls;
-using System.Windows;
-using System.Windows.Media;
-using MDE.Mods;
 using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows;
 
-namespace MDE
+namespace MDE.Types
 {
-    internal class Crusher1to1
+    internal class Pressing
     {
-        TextBox input, output, outputCount, energy;
+        TextBox input, output;
         Button createRecipeButton;
-        SolidColorBrush  orangeBrush;
+        SolidColorBrush orangeBrush;
         string inputStr, outputStr;
-        double energyDbl;
-        int countDbl;
-        CheckBox chB_Create, chB_Thermal, chB_IE, chB_Mekanism, chB_PlainGrinder;
+        CheckBox chB_Create, chB_Thermal, chB_IE;
         SecondaryWindow newWindow;
-        public Crusher1to1()
+        public Pressing()
         {
             orangeBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF4C2B"));
             input = new TextBox { Height = 40, Width = 260, FontSize = 24, FontWeight = FontWeights.Bold };
             output = new TextBox { Height = 40, Width = 260, FontSize = 24, FontWeight = FontWeights.Bold };
-            outputCount = new TextBox { Height = 40, Width = 130, FontSize = 24, FontWeight = FontWeights.Bold, Text = "1" };
-            energy = new TextBox { Height = 40, Width = 130, FontSize = 24, FontWeight = FontWeights.Bold, Text = "100" };
             createRecipeButton = new Button() { Height = 120, Width = 120, FontWeight = FontWeights.Bold, Content = "Crete Recipe", HorizontalAlignment = HorizontalAlignment.Center, FontSize = 18, Background = orangeBrush };
             chB_Create = new CheckBox() { Content = "Create", Height = 60, Width = 250, FontSize = 24, FontWeight = FontWeights.Bold, IsChecked = true };
             chB_IE = new CheckBox() { Content = "IE", Height = 60, Width = 250, FontSize = 24, FontWeight = FontWeights.Bold, IsChecked = true };
             chB_Thermal = new CheckBox() { Content = "Thermal", Height = 60, Width = 250, FontSize = 24, FontWeight = FontWeights.Bold, IsChecked = true };
-            chB_Mekanism = new CheckBox() { Content = "Mekanism", Height = 60, Width = 250, FontSize = 24, FontWeight = FontWeights.Bold, IsChecked = true };
-            chB_PlainGrinder = new CheckBox() { Content = "PlainGrinder", Height = 60, Width = 250, FontSize = 24, FontWeight = FontWeights.Bold, IsChecked = false };
             createRecipeButton.Click += Create_Click;
         }
         public Window getWindow()
@@ -50,23 +48,6 @@ namespace MDE
             Canvas.SetTop(output, 80);
             Canvas.SetLeft(outputLabel, 340);
             Canvas.SetTop(outputLabel, 30);
-            //----------------------------------
-            Label outputCountLabel = new Label() { Height = 50, Width = 130, FontSize = 28, FontWeight = FontWeights.Bold, Content = "count:", HorizontalAlignment = HorizontalAlignment.Center };
-            c.Children.Add(outputCount);
-            c.Children.Add(outputCountLabel);
-            Canvas.SetLeft(outputCount, 640);
-            Canvas.SetTop(outputCount, 80);
-            Canvas.SetLeft(outputCountLabel, 640);
-            Canvas.SetTop(outputCountLabel, 30);
-            //----------------------------------
-            Label energyLabel = new Label() { Height = 50, Width = 130, FontSize = 28, FontWeight = FontWeights.Bold, Content = "energy:", HorizontalAlignment = HorizontalAlignment.Center };
-            c.Children.Add(energyLabel);
-            c.Children.Add(energy);
-            Canvas.SetLeft(energy, 800);
-            Canvas.SetTop(energy, 80);
-            Canvas.SetLeft(energyLabel, 800);
-            Canvas.SetTop(energyLabel, 30);
-            //---------------------------------
             c.Children.Add(createRecipeButton);
             Canvas.SetLeft(createRecipeButton, 40);
             Canvas.SetTop(createRecipeButton, 300);
@@ -79,12 +60,6 @@ namespace MDE
             c.Children.Add(chB_Thermal);
             Canvas.SetLeft(chB_Thermal, 40);
             Canvas.SetTop(chB_Thermal, 170);
-            c.Children.Add(chB_Mekanism);
-            Canvas.SetLeft(chB_Mekanism, 40);
-            Canvas.SetTop(chB_Mekanism, 230);
-            c.Children.Add(chB_PlainGrinder);
-            Canvas.SetLeft(chB_PlainGrinder, 40);
-            Canvas.SetTop(chB_PlainGrinder, 260);
             newWindow.secondWindow.KeyDown += HandleKeyPress;
             newWindow.secondWindow.Content = c;
             return newWindow.secondWindow;
@@ -110,9 +85,7 @@ namespace MDE
         }
         bool isCorrectInput()
         {
-            if (AnyEmptyFields())
-                return false;
-            if (Double.TryParse(energy.Text, out energyDbl) && Int32.TryParse(outputCount.Text, out countDbl))
+            if (!AnyEmptyFields())
                 return true;
             return false;
         }
@@ -127,16 +100,12 @@ namespace MDE
                 isTag = true;
                 inputStr = inputStr.Substring(1, inputStr.Length - 1);
             }
-            if((bool)chB_Create.IsChecked)
-            allTheRecipes += Create.Crusher1to1(inputStr, isTag, outputStr, countDbl, energyDbl);
-            if ((bool)chB_Thermal.IsChecked)
-                allTheRecipes += ThermalExpansion.Crusher1to1(inputStr, isTag, outputStr, countDbl, energyDbl);
-            if ((bool)chB_Mekanism.IsChecked)
-                allTheRecipes += Mekanism.Crusher1to1(inputStr, isTag, outputStr, countDbl);
-            if ((bool)chB_IE.IsChecked)
-                allTheRecipes += ImmersiveEngineering.Crusher1to1(inputStr, isTag, outputStr, countDbl, energyDbl);
-            if ((bool)chB_PlainGrinder.IsChecked)
-                allTheRecipes += PlainGrinder.Crusher1to1(inputStr, isTag, outputStr, countDbl);
+            if ((bool)chB_Create.IsChecked)
+                allTheRecipes += Create.Pressing(inputStr, isTag, outputStr);
+            //if ((bool)chB_Thermal.IsChecked)
+            //    allTheRecipes += ThermalExpansion.Crusher1to1(inputStr, isTag, outputStr, countDbl, energyDbl);
+            //if ((bool)chB_IE.IsChecked)
+            //    allTheRecipes += ImmersiveEngineering.Crusher1to1(inputStr, isTag, outputStr, countDbl, energyDbl);
             newWindow.writeIntoRecipeTextBox(allTheRecipes);
         }
     }
