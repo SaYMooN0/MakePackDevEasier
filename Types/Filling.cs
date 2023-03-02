@@ -28,10 +28,10 @@ namespace MDE.Types
             fluid = new TextBox { Height = 40, Width = 340, FontSize = 24, FontWeight = FontWeights.Bold };
             fluidAmount = new TextBox { Height = 40, Width = 140, FontSize = 24, FontWeight = FontWeights.Bold };
             createRecipeButton = new Button() { Height = 120, Width = 120, FontWeight = FontWeights.Bold, Content = "Crete Recipe", HorizontalAlignment = HorizontalAlignment.Center, FontSize = 18, Background = orangeBrush };
-            chB_Create = new CheckBox() { Content = "Create", Height = 60, Width = 250, FontSize = 22, FontWeight = FontWeights.Bold, IsChecked = true };
-            chB_IF = new CheckBox() { Content = "Industrial Foregoing", Height = 60, Width = 290, FontSize = 22, FontWeight = FontWeights.Bold, IsChecked = true };
-            chB_Thermal = new CheckBox() { Content = "Themal Expansion", Height = 60, Width = 290, FontSize = 22, FontWeight = FontWeights.Bold, IsChecked = true };
-            chB_DoReducing = new CheckBox() { Content = "Reduce Fluid Consumption?", Height = 60, Width = 310, FontSize = 22, FontWeight = FontWeights.Bold, IsChecked = true };
+            chB_Create = new CheckBox() { Content = "Create", Height = 30, Width = 250, FontSize = 22, FontWeight = FontWeights.Bold, IsChecked = true };
+            chB_IF = new CheckBox() { Content = "Industrial Foregoing", Height = 30, Width = 290, FontSize = 22, FontWeight = FontWeights.Bold, IsChecked = true };
+            chB_Thermal = new CheckBox() { Content = "Themal Expansion", Height = 30, Width = 290, FontSize = 22, FontWeight = FontWeights.Bold, IsChecked = true };
+            chB_DoReducing = new CheckBox() { Content = "Reduce Fluid Consumption?", Height = 30, Width = 310, FontSize = 22, FontWeight = FontWeights.Bold, IsChecked = true };
             createRecipeButton.Click += Create_Click;
         }
         public Window getWindow()

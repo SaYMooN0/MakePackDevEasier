@@ -37,6 +37,9 @@
                 <RadioButton GroupName="Type" IsChecked="False" FontWeight="Bold"  VerticalContentAlignment="Center" x:Name="Filling">Filling</RadioButton>
             </Viewbox>
             <Viewbox Height="40" HorizontalAlignment="Left" Grid.Row="5">
+                <RadioButton GroupName="Type" IsChecked="False" FontWeight="Bold"  VerticalContentAlignment="Center" x:Name="Sawmill">Sawmill</RadioButton>
+            </Viewbox>
+            <Viewbox Height="40" HorizontalAlignment="Left" Grid.Row="6">
                 <RadioButton GroupName="Type" IsChecked="False" FontWeight="Bold"  VerticalContentAlignment="Center" x:Name="SequencedAssembly">Sequenced Assembly(Create)</RadioButton>
             </Viewbox>
         </Grid>

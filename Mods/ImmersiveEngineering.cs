@@ -6,6 +6,9 @@ namespace MDE.Mods
     internal class ImmersiveEngineering
     {
         static string crusherType = "\"type\": \"immersiveengineering:crusher\"";
+        static string pressingType = "\"type\":\"immersiveengineering:metal_press\"";
+        static string plateMold = "\"mold\":\"immersiveengineering:mold_plate\"";
+
         public static string Crusher1to1(string input, bool isTag, string output, int count, double energy)
         {
             string recipe = crusherType + ",\"secondaries\":[]," + SF.result + SF.wrapInItemWithCount(output, count) + ',' + SF.input;
@@ -35,6 +38,16 @@ namespace MDE.Mods
             else
                 recipe += $"{SF.wrapInItem(input)}";
             recipe += ',' + SF.energyRequired(energy);
+            return SF.wrapInCustom(recipe);
+        }
+        public static string Pressing(string input, bool isTag, string output)
+        {
+            string recipe = pressingType + ',' + plateMold+','+SF.result+SF.wrapInItem(output)+','+SF.input;
+            if (isTag)
+                recipe += $"{SF.wrapInTag(input)}";
+            else
+                recipe += $"{SF.wrapInItem(input)}";
+            recipe += ','+SF.energyRequired(80);
             return SF.wrapInCustom(recipe);
         }
     }

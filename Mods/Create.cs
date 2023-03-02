@@ -15,6 +15,7 @@ namespace MDE.Mods
         static string fillingType = "\"type\": \"create:filling\"";
         static string assemblyType = "\"type\": \"create:sequenced_assembly\"";
         static string pressingType = "\"type\": \"create:pressing\"";
+        static string cuttingType = "\"type\": \"create:cutting\"";
         public static string Crusher1to1(string input, bool isTag, string output, int count, double energy)
         {
             string recipe = millingType + ',' + SF.ingredients;
@@ -66,7 +67,7 @@ namespace MDE.Mods
             recipe+= SF.results + $"[{SF.wrapInItem(output)}]";
             return SF.wrapInCustom(recipe);
         }
-        public static string Pressing(string input, bool isTag, string output)//WIP
+        public static string Pressing(string input, bool isTag, string output)
         {
             string recipe = pressingType + ',' + SF.ingredients;
             if (isTag)

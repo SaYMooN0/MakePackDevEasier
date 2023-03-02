@@ -11,6 +11,7 @@ namespace MDE.Mods
     {
         static string pulverizerType = "\"type\": \"thermal:pulverizer\"";
         static string fillingType = " \"type\": \"thermal:bottler\"";
+        static string pressingType = "\"type\": \"thermal:press\"";
         public static string Crusher1to1(string input, bool isTag, string output, int count, double energy)
         {
             string recipe = pulverizerType + ',' + SF.ingredient;
@@ -47,6 +48,16 @@ namespace MDE.Mods
                 recipe += $"[{SF.wrapInItem(input)},";
             recipe += '{' + SF.fluid + $"\"{fluid}\"," + SF.amount + fluidAmount + "}],";
             recipe += SF.result + $"[{SF.wrapInItem(output)}]";
+            return SF.wrapInCustom(recipe);
+        }
+        public static string Pressing(string input, bool isTag, string output)
+        {
+            string recipe = pressingType + ',' + SF.ingredient;
+            if (isTag)
+                recipe += $"{SF.wrapInTag(input)}";
+            else
+                recipe += $"{SF.wrapInItem(input)}";
+            recipe += ',' + SF.result + $"[{SF.wrapInItem(output)}]";
             return SF.wrapInCustom(recipe);
         }
     }

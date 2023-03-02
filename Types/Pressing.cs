@@ -25,9 +25,9 @@ namespace MDE.Types
             input = new TextBox { Height = 40, Width = 260, FontSize = 24, FontWeight = FontWeights.Bold };
             output = new TextBox { Height = 40, Width = 260, FontSize = 24, FontWeight = FontWeights.Bold };
             createRecipeButton = new Button() { Height = 120, Width = 120, FontWeight = FontWeights.Bold, Content = "Crete Recipe", HorizontalAlignment = HorizontalAlignment.Center, FontSize = 18, Background = orangeBrush };
-            chB_Create = new CheckBox() { Content = "Create", Height = 60, Width = 250, FontSize = 24, FontWeight = FontWeights.Bold, IsChecked = true };
-            chB_IE = new CheckBox() { Content = "IE", Height = 60, Width = 250, FontSize = 24, FontWeight = FontWeights.Bold, IsChecked = true };
-            chB_Thermal = new CheckBox() { Content = "Thermal", Height = 60, Width = 250, FontSize = 24, FontWeight = FontWeights.Bold, IsChecked = true };
+            chB_Create = new CheckBox() { Content = "Create", Height = 30, Width = 250, FontSize = 24, FontWeight = FontWeights.Bold, IsChecked = true };
+            chB_IE = new CheckBox() { Content = "IE", Height = 30, Width = 250, FontSize = 24, FontWeight = FontWeights.Bold, IsChecked = true };
+            chB_Thermal = new CheckBox() { Content = "Thermal", Height = 30, Width = 250, FontSize = 24, FontWeight = FontWeights.Bold, IsChecked = true };
             createRecipeButton.Click += Create_Click;
         }
         public Window getWindow()
@@ -102,10 +102,10 @@ namespace MDE.Types
             }
             if ((bool)chB_Create.IsChecked)
                 allTheRecipes += Create.Pressing(inputStr, isTag, outputStr);
-            //if ((bool)chB_Thermal.IsChecked)
-            //    allTheRecipes += ThermalExpansion.Crusher1to1(inputStr, isTag, outputStr, countDbl, energyDbl);
-            //if ((bool)chB_IE.IsChecked)
-            //    allTheRecipes += ImmersiveEngineering.Crusher1to1(inputStr, isTag, outputStr, countDbl, energyDbl);
+            if ((bool)chB_Thermal.IsChecked)
+                allTheRecipes += ThermalExpansion.Pressing(inputStr, isTag, outputStr);
+            if ((bool)chB_IE.IsChecked)
+                allTheRecipes += ImmersiveEngineering.Pressing(inputStr, isTag, outputStr);
             newWindow.writeIntoRecipeTextBox(allTheRecipes);
         }
     }

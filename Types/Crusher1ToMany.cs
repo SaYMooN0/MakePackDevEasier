@@ -31,9 +31,9 @@ namespace MDE
             outputCount4 = new TextBox { Height = 40, Width = 200, FontSize = 24, FontWeight = FontWeights.Bold, Text = "1" };
             energy = new TextBox { Height = 40, Width = 130, FontSize = 24, FontWeight = FontWeights.Bold, Text = "100" };
             createRecipeButton = new Button() { Height = 120, Width = 120, FontWeight = FontWeights.Bold, Content = "Crete Recipe", HorizontalAlignment = HorizontalAlignment.Center, FontSize = 18, Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF4C2B")) };
-            chB_Create = new CheckBox() { Content = "Create", Height = 60, Width = 250, FontSize=22, FontWeight=FontWeights.Bold, IsChecked=true };
-            chB_IE = new CheckBox() { Content = "IE", Height = 60, Width = 250, FontSize=22, FontWeight=FontWeights.Bold, IsChecked = true };
-            chB_Thermal= new CheckBox() { Content = "Themal", Height = 60, Width = 250, FontSize=22, FontWeight=FontWeights.Bold, IsChecked = true };
+            chB_Create = new CheckBox() { Content = "Create", Height = 30, Width = 250, FontSize=22, FontWeight=FontWeights.Bold, IsChecked=true };
+            chB_IE = new CheckBox() { Content = "IE", Height = 30, Width = 250, FontSize=22, FontWeight=FontWeights.Bold, IsChecked = true };
+            chB_Thermal= new CheckBox() { Content = "Themal", Height = 30, Width = 250, FontSize=22, FontWeight=FontWeights.Bold, IsChecked = true };
         }
         public Window getWindow()
         {
