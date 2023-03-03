@@ -1,4 +1,5 @@
-﻿using MDE.Types;
+﻿using MDE.Mods;
+using MDE.Types;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -50,12 +51,17 @@ namespace MDE
             {
                 Pressing c = new Pressing();
                 newRecipeWin = c.getWindow();
-            } 
+            }
             //else if (myChosenType == recipeType.Sawmill) // WIP
             //{
             //    Sawmill c = new Sawmill();
             //    newRecipeWin = c.getWindow();
             //}
+            else if (myChosenType == recipeType.SequencedAssembly) // WIP
+            {
+                SequencedAssembly c = new SequencedAssembly();
+                newRecipeWin = c.getWindow();
+            }
             else
             {
                 MessageBox.Show("Your recipe type is: " + myChosenType.ToString());
