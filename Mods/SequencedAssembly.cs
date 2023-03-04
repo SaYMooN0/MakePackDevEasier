@@ -24,9 +24,16 @@ namespace MDE.Mods
             orangeBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF4C2B"));
             Sawmill= new Label { Height = 35, Width = 140, FontSize = 16, FontWeight = FontWeights.Bold, Content="Sawmill" };
             Pressing = new Label { Height = 35, Width = 140, FontSize = 16, FontWeight = FontWeights.Bold, Content= "Pressing" };
+            Filling = new Label { Height = 35, Width = 140, FontSize = 16, FontWeight = FontWeights.Bold, Content= "Filling" };
+            Polishing = new Label { Height = 35, Width = 140, FontSize = 16, FontWeight = FontWeights.Bold, Content= "Polishing" };
+            AddingItem = new Label { Height = 35, Width = 140, FontSize = 16, FontWeight = FontWeights.Bold, Content= "AddingItem" };
+            TB_Loops = new TextBox {Height=20, Width=20, FontSize=16, FontWeight=FontWeights.Bold };
             Exapmle = new ComboBox() {Height=35, Width=160, FontWeight = FontWeights.Bold, HorizontalAlignment = HorizontalAlignment.Center, FontSize = 18,Text="Choose type:" };
-            Exapmle.Items.Add(Pressing);
-            Exapmle.Items.Add(Sawmill);
+            //Exapmle.Items.Add(Pressing);
+            //Exapmle.Items.Add(Sawmill);
+            //Exapmle.Items.Add(Filling);
+            //Exapmle.Items.Add(Polishing);
+            //Exapmle.Items.Add(AddingItem);
             createRecipeButton = new Button() { Height = 120, Width = 120, FontWeight = FontWeights.Bold, Content = "Crete Recipe", HorizontalAlignment = HorizontalAlignment.Center, FontSize = 18, Background = orangeBrush };
             createRecipeButton.Click += Create_Click;
         }
@@ -34,9 +41,38 @@ namespace MDE.Mods
         {
             newWindow = new SecondaryWindow();
             Canvas c = (Canvas)newWindow.secondWindow.Content;
-            c.Children.Add(Exapmle);
-            Canvas.SetLeft(Exapmle, 100);
-            Canvas.SetTop(Exapmle, 100);
+            for (int i = 0; i < 8; i++)
+            {
+                ComboBox cB = new ComboBox { Height = 35, Width = 200, FontWeight = FontWeights.Bold, HorizontalAlignment = HorizontalAlignment.Center, FontSize = 18, Text = "Choose type:" };
+                Sawmill = new Label { Height = 35, Width = 180, FontSize = 16, FontWeight = FontWeights.Bold, Content = "Sawmill" };
+                Pressing = new Label { Height = 35, Width = 180, FontSize = 16, FontWeight = FontWeights.Bold, Content = "Pressing" };
+                Filling = new Label { Height = 35, Width = 180, FontSize = 16, FontWeight = FontWeights.Bold, Content = "Filling" };
+                Polishing = new Label { Height = 35, Width = 180, FontSize = 16, FontWeight = FontWeights.Bold, Content = "Polishing" };
+                AddingItem = new Label { Height = 35, Width = 180, FontSize = 16, FontWeight = FontWeights.Bold, Content = "AddingItem" };
+                cB.Items.Refresh();
+                cB.Items.Add(Pressing);
+                cB.Items.Add(Sawmill);
+                cB.Items.Add(Filling);
+                cB.Items.Add(Polishing);
+                cB.Items.Add(AddingItem);
+                cB.SelectionChanged += SelectionChanged;
+                ComboBoxes[i] = cB;
+                c.Children.Add(ComboBoxes[i]);
+                if (i < 4)
+                {
+                    Canvas.SetLeft(ComboBoxes[i], 40);
+                    Canvas.SetTop(ComboBoxes[i], (50 * (i) + 40));
+                }
+                else
+                {
+                    Canvas.SetLeft(ComboBoxes[i], 540);
+                    Canvas.SetTop(ComboBoxes[i], (50 * (i-4) + 40));
+                }
+               
+            }
+            //c.Children.Add(Exapmle);
+            //Canvas.SetLeft(Exapmle, 100);
+            //Canvas.SetTop(Exapmle, 100);
             c.Children.Add(createRecipeButton);
             Canvas.SetLeft(createRecipeButton, 40);
             Canvas.SetTop(createRecipeButton, 300);
@@ -44,6 +80,11 @@ namespace MDE.Mods
             newWindow.secondWindow.Content = c;
             return newWindow.secondWindow;
 
+        }
+        private void SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ComboBox cB = sender as ComboBox;
+            MessageBox.Show(cB.SelectedItem.ToString());
         }
         private void HandleKeyPress(object sender, KeyEventArgs e)
         {
