@@ -13,15 +13,17 @@ namespace MDE.Mods
     internal class SequencedAssembly
     {
         Button createRecipeButton;
-        SolidColorBrush orangeBrush;
+        SolidColorBrush orangeBrush, whiteBrush;
         SecondaryWindow newWindow;
         ComboBox[]  ComboBoxes= new ComboBox[8];
+        Tuple<TextBox, TextBox>[] supTextBoxes= new Tuple<TextBox, TextBox>[8];
+        Tuple<Label, Label>[] supLabels= new Tuple<Label, Label>[8];
         TextBox TB_Loops;
         Label Sawmill, Pressing, Filling, Polishing, AddingItem, Label_Loops;
         public SequencedAssembly()
         {
             orangeBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF4C2B"));
-            SolidColorBrush whiteBrush = new SolidColorBrush(Colors.White);
+            whiteBrush = new SolidColorBrush(Colors.White);
             Sawmill = new Label { Height = 35, Width = 140, FontSize = 16, FontWeight = FontWeights.Bold, Content="Sawmill" };
             Pressing = new Label { Height = 35, Width = 140, FontSize = 16, FontWeight = FontWeights.Bold, Content= "Pressing" };
             Filling = new Label { Height = 35, Width = 140, FontSize = 16, FontWeight = FontWeights.Bold, Content= "Filling" };
@@ -38,10 +40,10 @@ namespace MDE.Mods
             Canvas c = (Canvas)newWindow.secondWindow.Content;
             c.Children.Add(Label_Loops);
             Canvas.SetLeft(Label_Loops, 40);
-            Canvas.SetTop(Label_Loops, 30);
+            Canvas.SetTop(Label_Loops, 26);
             c.Children.Add(TB_Loops);
             Canvas.SetLeft(TB_Loops, 210);
-            Canvas.SetTop(TB_Loops, 36);
+            Canvas.SetTop(TB_Loops, 32);
             for (int i = 0; i < 8; i++)
             {
                 ComboBox cB = new ComboBox { Height = 35, Width = 200, FontWeight = FontWeights.Bold, HorizontalAlignment = HorizontalAlignment.Center, FontSize = 18, Text = "Choose type:" };
@@ -58,22 +60,31 @@ namespace MDE.Mods
                 cB.Items.Add(AddingItem);
                 cB.SelectionChanged += SelectionChanged;
                 ComboBoxes[i] = cB;
+                supTextBoxes[i] = new Tuple<TextBox, TextBox>(new TextBox { Visibility= Visibility.Hidden, FontSize=18, FontWeight = FontWeights.Bold }, new TextBox { Visibility = Visibility.Hidden, FontSize=18, FontWeight = FontWeights.Bold });
+                supLabels[i] = new Tuple<Label, Label>(new Label { Visibility= Visibility.Hidden, FontSize=12, FontWeight = FontWeights.Bold, Foreground = whiteBrush }, new Label { Visibility = Visibility.Hidden, FontSize=12, FontWeight = FontWeights.Bold, Foreground = whiteBrush });
+                c.Children.Add(supTextBoxes[i].Item1);
+                c.Children.Add(supTextBoxes[i].Item2);
                 c.Children.Add(ComboBoxes[i]);
                 if (i < 4)
                 {
                     Canvas.SetLeft(ComboBoxes[i], 40);
-                    Canvas.SetTop(ComboBoxes[i], (60 * (i) + 80));
+                    Canvas.SetTop(ComboBoxes[i], 58 * i + 80);
+                    Canvas.SetLeft(supTextBoxes[i].Item1, 260);
+                    Canvas.SetTop(supTextBoxes[i].Item1, 58 * i + 80);
+                    Canvas.SetLeft(supTextBoxes[i].Item2, 455);
+                    Canvas.SetTop(supTextBoxes[i].Item2, 58 * i + 80);
                 }
                 else
                 {
-                    Canvas.SetLeft(ComboBoxes[i], 540);
-                    Canvas.SetTop(ComboBoxes[i], (60 * (i-4) + 80));
+                    Canvas.SetLeft(ComboBoxes[i], 510);
+                    Canvas.SetTop(ComboBoxes[i], (58 * (i-4) + 80));
+                    Canvas.SetLeft(supTextBoxes[i].Item1, 730);
+                    Canvas.SetTop(supTextBoxes[i].Item1, 58 * (i-4) + 80);
+                    Canvas.SetLeft(supTextBoxes[i].Item2, 925);
+                    Canvas.SetTop(supTextBoxes[i].Item2, 58 * (i-4) + 80);
                 }
                
             }
-            //c.Children.Add(Exapmle);
-            //Canvas.SetLeft(Exapmle, 100);
-            //Canvas.SetTop(Exapmle, 100);
             c.Children.Add(createRecipeButton);
             Canvas.SetLeft(createRecipeButton, 40);
             Canvas.SetTop(createRecipeButton, 300);
@@ -86,16 +97,30 @@ namespace MDE.Mods
         {
             if (sender != null)
             {
+                int index=Array.FindIndex(ComboBoxes, val => val.Equals(sender));
                 ComboBox cB = sender as ComboBox;
                 Label l = cB.SelectedItem as Label;
                 string str = l.Content.ToString();
-                if (str== "Filling")
+                if (str == "Filling")
                 {
-
+                    supTextBoxes[index].Item1.Visibility = Visibility.Visible;
+                    supTextBoxes[index].Item1.Width = 180;
+                    supTextBoxes[index].Item1.Height = 35;
+                    supTextBoxes[index].Item2.Visibility = Visibility.Visible;
+                    supTextBoxes[index].Item2.Width = 35;
+                    supTextBoxes[index].Item2.Height = 35;
                 }
                 else if (str == "AddingItem")
                 {
-                    MessageBox.Show("adding item");
+                    supTextBoxes[index].Item1.Visibility = Visibility.Visible;
+                    supTextBoxes[index].Item1.Width = 230;
+                    supTextBoxes[index].Item1.Height = 35;
+                    supTextBoxes[index].Item2.Visibility = Visibility.Hidden;
+                }
+                else
+                { 
+                    supTextBoxes[index].Item1.Visibility = Visibility.Hidden;
+                    supTextBoxes[index].Item2.Visibility = Visibility.Hidden;
                 }
                     
             }
