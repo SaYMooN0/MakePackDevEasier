@@ -8,29 +8,29 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows;
 
-namespace MDE.Mods
+namespace MDE.Types
 {
     internal class SequencedAssembly
     {
         Button createRecipeButton;
         SolidColorBrush orangeBrush, whiteBrush;
         SecondaryWindow newWindow;
-        ComboBox[]  ComboBoxes= new ComboBox[8];
-        Tuple<TextBox, TextBox>[] supTextBoxes= new Tuple<TextBox, TextBox>[8];
-        Tuple<Label, Label>[] supLabels= new Tuple<Label, Label>[8];
+        ComboBox[] ComboBoxes = new ComboBox[8];
+        Tuple<TextBox, TextBox>[] supTextBoxes = new Tuple<TextBox, TextBox>[8];
+        Tuple<Label, Label>[] supLabels = new Tuple<Label, Label>[8];
         TextBox TB_Loops;
         Label Sawmill, Pressing, Filling, Polishing, AddingItem, Label_Loops;
         public SequencedAssembly()
         {
             orangeBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF4C2B"));
             whiteBrush = new SolidColorBrush(Colors.White);
-            Sawmill = new Label { Height = 35, Width = 140, FontSize = 16, FontWeight = FontWeights.Bold, Content="Sawmill" };
-            Pressing = new Label { Height = 35, Width = 140, FontSize = 16, FontWeight = FontWeights.Bold, Content= "Pressing" };
-            Filling = new Label { Height = 35, Width = 140, FontSize = 16, FontWeight = FontWeights.Bold, Content= "Filling" };
-            Polishing = new Label { Height = 35, Width = 140, FontSize = 16, FontWeight = FontWeights.Bold, Content= "Polishing" };
-            AddingItem = new Label { Height = 35, Width = 140, FontSize = 16, FontWeight = FontWeights.Bold, Content= "AddingItem" };
-            TB_Loops = new TextBox {Height=24, Width= 28, FontSize=18, FontWeight=FontWeights.Bold };
-            Label_Loops = new Label { Height = 40, Width = 180, FontSize = 18, FontWeight = FontWeights.Bold, Content="Number of loops:", Foreground=whiteBrush};
+            Sawmill = new Label { Height = 35, Width = 140, FontSize = 16, FontWeight = FontWeights.Bold, Content = "Sawmill" };
+            Pressing = new Label { Height = 35, Width = 140, FontSize = 16, FontWeight = FontWeights.Bold, Content = "Pressing" };
+            Filling = new Label { Height = 35, Width = 140, FontSize = 16, FontWeight = FontWeights.Bold, Content = "Filling" };
+            Polishing = new Label { Height = 35, Width = 140, FontSize = 16, FontWeight = FontWeights.Bold, Content = "Polishing" };
+            AddingItem = new Label { Height = 35, Width = 140, FontSize = 16, FontWeight = FontWeights.Bold, Content = "AddingItem" };
+            TB_Loops = new TextBox { Height = 24, Width = 28, FontSize = 18, FontWeight = FontWeights.Bold };
+            Label_Loops = new Label { Height = 40, Width = 180, FontSize = 18, FontWeight = FontWeights.Bold, Content = "Number of loops:", Foreground = whiteBrush };
             createRecipeButton = new Button() { Height = 120, Width = 120, FontWeight = FontWeights.Bold, Content = "Crete Recipe", HorizontalAlignment = HorizontalAlignment.Center, FontSize = 18, Background = orangeBrush };
             createRecipeButton.Click += Create_Click;
         }
@@ -60,8 +60,8 @@ namespace MDE.Mods
                 cB.Items.Add(AddingItem);
                 cB.SelectionChanged += SelectionChanged;
                 ComboBoxes[i] = cB;
-                supTextBoxes[i] = new Tuple<TextBox, TextBox>(new TextBox { Visibility= Visibility.Hidden, FontSize=18, FontWeight = FontWeights.Bold }, new TextBox { Visibility = Visibility.Hidden, FontSize=18, FontWeight = FontWeights.Bold });
-                supLabels[i] = new Tuple<Label, Label>(new Label { Visibility= Visibility.Hidden, FontSize=12, FontWeight = FontWeights.Bold, Foreground = whiteBrush }, new Label { Visibility = Visibility.Hidden, FontSize=12, FontWeight = FontWeights.Bold, Foreground = whiteBrush });
+                supTextBoxes[i] = new Tuple<TextBox, TextBox>(new TextBox { Visibility = Visibility.Hidden, FontSize = 18, FontWeight = FontWeights.Bold }, new TextBox { Visibility = Visibility.Hidden, FontSize = 18, FontWeight = FontWeights.Bold });
+                supLabels[i] = new Tuple<Label, Label>(new Label { Visibility = Visibility.Hidden, FontSize = 12, FontWeight = FontWeights.Bold, Foreground = whiteBrush }, new Label { Visibility = Visibility.Hidden, FontSize = 12, FontWeight = FontWeights.Bold, Foreground = whiteBrush });
                 c.Children.Add(supTextBoxes[i].Item1);
                 c.Children.Add(supTextBoxes[i].Item2);
                 c.Children.Add(ComboBoxes[i]);
@@ -77,13 +77,13 @@ namespace MDE.Mods
                 else
                 {
                     Canvas.SetLeft(ComboBoxes[i], 510);
-                    Canvas.SetTop(ComboBoxes[i], (58 * (i-4) + 80));
+                    Canvas.SetTop(ComboBoxes[i], 58 * (i - 4) + 80);
                     Canvas.SetLeft(supTextBoxes[i].Item1, 730);
-                    Canvas.SetTop(supTextBoxes[i].Item1, 58 * (i-4) + 80);
+                    Canvas.SetTop(supTextBoxes[i].Item1, 58 * (i - 4) + 80);
                     Canvas.SetLeft(supTextBoxes[i].Item2, 925);
-                    Canvas.SetTop(supTextBoxes[i].Item2, 58 * (i-4) + 80);
+                    Canvas.SetTop(supTextBoxes[i].Item2, 58 * (i - 4) + 80);
                 }
-               
+
             }
             c.Children.Add(createRecipeButton);
             Canvas.SetLeft(createRecipeButton, 40);
@@ -97,7 +97,7 @@ namespace MDE.Mods
         {
             if (sender != null)
             {
-                int index=Array.FindIndex(ComboBoxes, val => val.Equals(sender));
+                int index = Array.FindIndex(ComboBoxes, val => val.Equals(sender));
                 ComboBox cB = sender as ComboBox;
                 Label l = cB.SelectedItem as Label;
                 string str = l.Content.ToString();
@@ -118,11 +118,11 @@ namespace MDE.Mods
                     supTextBoxes[index].Item2.Visibility = Visibility.Hidden;
                 }
                 else
-                { 
+                {
                     supTextBoxes[index].Item1.Visibility = Visibility.Hidden;
                     supTextBoxes[index].Item2.Visibility = Visibility.Hidden;
                 }
-                    
+
             }
         }
         private void HandleKeyPress(object sender, KeyEventArgs e)

@@ -113,7 +113,7 @@ namespace MDE.Types
             outputStr = output.Text.Substring(1, output.Text.Length - 2);
             fluidAmountInt = Int32.Parse(fluidAmount.Text);
             fluidStr = fluid.Text.Replace("\'", string.Empty);
-            fluidStr = fluid.Text.Replace("\"", string.Empty);
+            fluidStr = fluidStr.Replace("\"", string.Empty);
             if (inputStr[0] == '#')
             {
                 isTag = true;

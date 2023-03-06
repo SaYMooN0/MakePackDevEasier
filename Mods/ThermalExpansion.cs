@@ -4,6 +4,7 @@ using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace MDE.Mods
 {
@@ -46,7 +47,12 @@ namespace MDE.Mods
                 recipe += $"[{SF.wrapInTag(input)},";
             else
                 recipe += $"[{SF.wrapInItem(input)},";
-            recipe += '{' + SF.fluid + $"\"{fluid}\"," + SF.amount + fluidAmount + "}],";
+            recipe += '{';
+            if (fluid.Contains("forge:"))
+                recipe += SF.fluidtag;
+            else
+                recipe += SF.fluid;
+            recipe+=$"\"{fluid}\"," + SF.amount + fluidAmount + "}],";
             recipe += SF.result + $"[{SF.wrapInItem(output)}]";
             return SF.wrapInCustom(recipe);
         }

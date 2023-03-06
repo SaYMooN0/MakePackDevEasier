@@ -1,5 +1,4 @@
-﻿using MDE.Mods;
-using MDE.Types;
+﻿using MDE.Types;
 using System.Windows;
 using System.Windows.Controls;
 

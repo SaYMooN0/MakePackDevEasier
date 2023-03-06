@@ -12,6 +12,7 @@
         public const string secondaries = "\"secondaries\" :";
         public const string amount = "\"amount\":";
         public const string fluid = "\"fluid\":";
+        public const string fluidtag = "\"fluid_tag\":";
         public const string nbtEmpty = "\"nbt\": {}";
 
         static public string count(int a){ return "\"count\":"+a.ToString(); }
