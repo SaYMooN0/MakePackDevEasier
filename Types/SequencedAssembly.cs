@@ -19,8 +19,8 @@ namespace MDE.Types
         ComboBox[] ComboBoxes = new ComboBox[8];
         Tuple<TextBox, TextBox>[] supTextBoxes = new Tuple<TextBox, TextBox>[8];
         Tuple<Label, Label>[] supLabels = new Tuple<Label, Label>[8];
-        TextBox TB_Loops;
-        Label Sawmill, Pressing, Filling, Polishing, AddingItem, Label_Loops;
+        TextBox TB_Loops, TB_Input, TB_Output, TB_Transitional;
+        Label Sawmill, Pressing, Filling, Polishing, AddingItem, Label_Loops, Label_Input, Label_Output, Label_Transitional;
         int loopsCount;
         public SequencedAssembly()
         {
@@ -32,7 +32,13 @@ namespace MDE.Types
             Polishing = new Label { Height = 35, Width = 140, FontSize = 16, FontWeight = FontWeights.Bold, Content = "Polishing" };
             AddingItem = new Label { Height = 35, Width = 140, FontSize = 16, FontWeight = FontWeights.Bold, Content = "AddingItem" };
             TB_Loops = new TextBox { Height = 24, Width = 28, FontSize = 18, FontWeight = FontWeights.Bold, Text="1" };
+            TB_Input = new TextBox { Height = 26, Width = 180, FontSize = 16, FontWeight = FontWeights.Bold};
+            TB_Output= new TextBox { Height = 26, Width = 180, FontSize = 16, FontWeight = FontWeights.Bold};
+            TB_Transitional = new TextBox { Height = 26, Width = 180, FontSize = 16, FontWeight = FontWeights.Bold};
             Label_Loops = new Label { Height = 40, Width = 180, FontSize = 18, FontWeight = FontWeights.Bold, Content = "Number of loops:", Foreground = whiteBrush };
+            Label_Input = new Label { Height = 40, Width = 180, FontSize = 14, FontWeight = FontWeights.Bold, Content = "Intput Item:", Foreground = whiteBrush };
+            Label_Output = new Label { Height = 40, Width = 180, FontSize = 14, FontWeight = FontWeights.Bold, Content = "Output Item:", Foreground = whiteBrush };
+            Label_Transitional = new Label { Height = 40, Width = 180, FontSize = 14, FontWeight = FontWeights.Bold, Content = "Transitional Item:", Foreground = whiteBrush };
             createRecipeButton = new Button() { Height = 120, Width = 120, FontWeight = FontWeights.Bold, Content = "Create Recipe", HorizontalAlignment = HorizontalAlignment.Center, FontSize = 18, Background = orangeBrush };
             createRecipeButton.Click += Create_Click;
         }
@@ -43,6 +49,29 @@ namespace MDE.Types
             c.Children.Add(Label_Loops);
             Canvas.SetLeft(Label_Loops, 40);
             Canvas.SetTop(Label_Loops, 26);
+
+            c.Children.Add(Label_Input);
+            Canvas.SetLeft(Label_Input, 260);
+            Canvas.SetTop(Label_Input, 5);
+            c.Children.Add(TB_Input);
+            Canvas.SetLeft(TB_Input, 260);
+            Canvas.SetTop(TB_Input, 32);
+            TB_Input.TextChanged += inputFilling;
+
+            c.Children.Add(Label_Transitional);
+            Canvas.SetLeft(Label_Transitional, 460);
+            Canvas.SetTop(Label_Transitional, 5);
+            c.Children.Add(TB_Transitional);
+            Canvas.SetLeft(TB_Transitional, 460);
+            Canvas.SetTop(TB_Transitional, 32);
+
+            c.Children.Add(Label_Output);
+            Canvas.SetLeft(Label_Output, 660);
+            Canvas.SetTop(Label_Output, 5);
+            c.Children.Add(TB_Output);
+            Canvas.SetLeft(TB_Output, 660);
+            Canvas.SetTop(TB_Output, 32);
+
             c.Children.Add(TB_Loops);
             Canvas.SetLeft(TB_Loops, 210);
             Canvas.SetTop(TB_Loops, 32);
@@ -132,6 +161,11 @@ namespace MDE.Types
             if (Keyboard.IsKeyDown(Key.LeftAlt) && Keyboard.IsKeyDown(Key.Enter))
                 Create_Click(null, new RoutedEventArgs());
         }
+        private void inputFilling(object sender, EventArgs e)
+        {
+            if (String.IsNullOrEmpty(TB_Transitional.Text) || TB_Input.Text.StartsWith(TB_Transitional.Text))
+                TB_Transitional.Text = TB_Input.Text;
+        }
         void Create_Click(object sender, RoutedEventArgs e)
         {
             string isCorrect = isCorrectInput();
@@ -146,6 +180,12 @@ namespace MDE.Types
         string isCorrectInput()
         {
             bool anyRecipes = false;
+            if (String.IsNullOrEmpty(TB_Input.Text))
+                return "incorrect input Textbox";
+            if (String.IsNullOrEmpty(TB_Output.Text))
+                return "incorrect output Textbox";
+            if (String.IsNullOrEmpty(TB_Transitional.Text))
+                return "incorrect transitional Textbox";
             if (!Int32.TryParse(TB_Loops.Text, out loopsCount)|| loopsCount<=0)
                 return "loops input is not correct";
             for (int i = 0; i < 8; i++)
