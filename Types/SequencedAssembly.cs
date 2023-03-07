@@ -7,6 +7,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows;
+using System.Reflection;
 
 namespace MDE.Types
 {
@@ -20,6 +21,7 @@ namespace MDE.Types
         Tuple<Label, Label>[] supLabels = new Tuple<Label, Label>[8];
         TextBox TB_Loops;
         Label Sawmill, Pressing, Filling, Polishing, AddingItem, Label_Loops;
+        int loopsCount;
         public SequencedAssembly()
         {
             orangeBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF4C2B"));
@@ -29,9 +31,9 @@ namespace MDE.Types
             Filling = new Label { Height = 35, Width = 140, FontSize = 16, FontWeight = FontWeights.Bold, Content = "Filling" };
             Polishing = new Label { Height = 35, Width = 140, FontSize = 16, FontWeight = FontWeights.Bold, Content = "Polishing" };
             AddingItem = new Label { Height = 35, Width = 140, FontSize = 16, FontWeight = FontWeights.Bold, Content = "AddingItem" };
-            TB_Loops = new TextBox { Height = 24, Width = 28, FontSize = 18, FontWeight = FontWeights.Bold };
+            TB_Loops = new TextBox { Height = 24, Width = 28, FontSize = 18, FontWeight = FontWeights.Bold, Text="1" };
             Label_Loops = new Label { Height = 40, Width = 180, FontSize = 18, FontWeight = FontWeights.Bold, Content = "Number of loops:", Foreground = whiteBrush };
-            createRecipeButton = new Button() { Height = 120, Width = 120, FontWeight = FontWeights.Bold, Content = "Crete Recipe", HorizontalAlignment = HorizontalAlignment.Center, FontSize = 18, Background = orangeBrush };
+            createRecipeButton = new Button() { Height = 120, Width = 120, FontWeight = FontWeights.Bold, Content = "Create Recipe", HorizontalAlignment = HorizontalAlignment.Center, FontSize = 18, Background = orangeBrush };
             createRecipeButton.Click += Create_Click;
         }
         public Window getWindow()
@@ -132,17 +134,40 @@ namespace MDE.Types
         }
         void Create_Click(object sender, RoutedEventArgs e)
         {
-            //if (isCorrectInput())
-            //    makeNewRecipe();
-            //else
-            //    MessageBox.Show("invalid input");
+            string isCorrect = isCorrectInput();
+            if (isCorrect == "0")
+            {
+                MessageBox.Show("all is ok");
+            }
+            //makeNewRecipe();
+            else
+                MessageBox.Show(isCorrect);
         }
-        //bool isCorrectInput()
-        //{
-        //    if (!String.IsNullOrEmpty(input.Text) && !String.IsNullOrEmpty(output.Text) && !String.IsNullOrEmpty(fluid.Text) && Int32.TryParse(fluidAmount.Text, out fluidAmountInt))
-        //        return true;
-        //    return false;
-        //}
+        string isCorrectInput()
+        {
+            bool anyRecipes = false;
+            if (!Int32.TryParse(TB_Loops.Text, out loopsCount)|| loopsCount<=0)
+                return "loops input is not correct";
+            for (int i = 0; i < 8; i++)
+            {
+                if (ComboBoxes[i].SelectedItem != null)
+                {
+                    anyRecipes = true;
+                    Label l = ComboBoxes[i].SelectedItem as Label;
+                    string str = l.Content.ToString();
+                    if (str == "Filling")
+                        if (String.IsNullOrEmpty(supTextBoxes[i].Item1.Text) || !(Int32.TryParse(supTextBoxes[i].Item2.Text, out int parsedNumber)))
+                            return "Filling field is incorrect";
+                        else if (str == "AddingItem")
+                            if (String.IsNullOrEmpty(supTextBoxes[i].Item1.Text))
+                                return "Adding Item field is incorrect";
+                }
+            }
+            if (anyRecipes == true)
+                return "0";
+            else
+                return "Choose at least 1 recipe";
+        }
         //private void makeNewRecipe()
         //{
         //    bool isTag = false;

@@ -24,7 +24,7 @@ namespace MDE.Types
             orangeBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF4C2B"));
             input = new TextBox { Height = 40, Width = 260, FontSize = 24, FontWeight = FontWeights.Bold };
             output = new TextBox { Height = 40, Width = 260, FontSize = 24, FontWeight = FontWeights.Bold };
-            createRecipeButton = new Button() { Height = 120, Width = 120, FontWeight = FontWeights.Bold, Content = "Crete Recipe", HorizontalAlignment = HorizontalAlignment.Center, FontSize = 18, Background = orangeBrush };
+            createRecipeButton = new Button() { Height = 120, Width = 120, FontWeight = FontWeights.Bold, Content = "Create Recipe", HorizontalAlignment = HorizontalAlignment.Center, FontSize = 18, Background = orangeBrush };
             chB_Create = new CheckBox() { Content = "Create", Height = 30, Width = 250, FontSize = 24, FontWeight = FontWeights.Bold, IsChecked = true };
             chB_IE = new CheckBox() { Content = "IE", Height = 30, Width = 250, FontSize = 24, FontWeight = FontWeights.Bold, IsChecked = true };
             chB_Thermal = new CheckBox() { Content = "Thermal", Height = 30, Width = 250, FontSize = 24, FontWeight = FontWeights.Bold, IsChecked = true };
