@@ -26,7 +26,7 @@ namespace MDE.Mods
             recipe += ',' + SF.results + '[' + SF.wrapInItemWithCount(output, count) + "]," + SF.processTime(energy + 20);
             return SF.wrapInCustom(recipe);
         }
-        public static string Polishing(string input, bool isTag, string output)//WIP
+        public static string Polishing(string input, bool isTag, string output)
         {
             string recipe = polishingType + ',' + SF.ingredients;
             if (isTag)
@@ -75,6 +75,20 @@ namespace MDE.Mods
             else
                 recipe += $"[{SF.wrapInItem(input)}]";
             recipe += ',' + SF.results + $"[{SF.wrapInItem(output)}]";
+            return SF.wrapInCustom(recipe);
+        }
+        public static string Sawmill(string input, bool isTag, string output, int count, int time)
+        {
+            string recipe = cuttingType + ',' + SF.ingredients;
+            if (isTag)
+                recipe += $"[{SF.wrapInTag(input)}";
+            else
+                recipe += $"[{SF.wrapInItem(input)}";
+            if (count > 1)
+                recipe += "," + SF.count(count) + "]";
+            else
+                recipe += "]";
+            recipe += ',' + SF.results + $"[{SF.wrapInItem(output)}],"+SF.processTime(time);
             return SF.wrapInCustom(recipe);
         }
 
