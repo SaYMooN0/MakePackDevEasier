@@ -128,12 +128,12 @@ namespace MDE.Types
             }
             if ((bool)chB_Create.IsChecked)
                 allTheRecipes += Create.Sawmill(inputStr, isTag, outputStr, countInt, (int)(energyInt / 25));
-            //if ((bool)chB_Thermal.IsChecked)                                                                                  //WIP
-            //    allTheRecipes += ThermalExpansion.Crusher1to1(inputStr, isTag, outputStr, countInt, energyInt);
-            //if ((bool)chB_Mekanism.IsChecked)
-            //    allTheRecipes += Mekanism.Crusher1to1(inputStr, isTag, outputStr, countInt);
+            if ((bool)chB_Thermal.IsChecked)                                                                                  
+                allTheRecipes += ThermalExpansion.Sawmill(inputStr, isTag, outputStr, countInt, energyInt);
+            if ((bool)chB_Mekanism.IsChecked)
+                allTheRecipes += Mekanism.Sawmill(inputStr, isTag, outputStr, countInt);
             //if ((bool)chB_IE.IsChecked)
-            //    allTheRecipes += ImmersiveEngineering.Crusher1to1(inputStr, isTag, outputStr, countInt, energyInt);
+            //    allTheRecipes += ImmersiveEngineering.Sawmill(inputStr, isTag, outputStr, countInt, energyInt);
             newWindow.writeIntoRecipeTextBox(allTheRecipes);
         }
     }

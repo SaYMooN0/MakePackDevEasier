@@ -6,6 +6,7 @@
         public const string results = "\"results\":";
         public const string input = "\"input\":";
         public const string output = "\"output\":";
+        public const string mainOutput = "\"mainOutput\":";
         public const string ingredients = "\"ingredients\":";
         public const string ingredient = "\"ingredient\":";
         public const string xp = "\"experience\" :";
