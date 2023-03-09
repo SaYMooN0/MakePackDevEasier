@@ -132,8 +132,8 @@ namespace MDE.Types
                 allTheRecipes += ThermalExpansion.Sawmill(inputStr, isTag, outputStr, countInt, energyInt);
             if ((bool)chB_Mekanism.IsChecked)
                 allTheRecipes += Mekanism.Sawmill(inputStr, isTag, outputStr, countInt);
-            //if ((bool)chB_IE.IsChecked)
-            //    allTheRecipes += ImmersiveEngineering.Sawmill(inputStr, isTag, outputStr, countInt, energyInt);
+            if ((bool)chB_IE.IsChecked)
+                allTheRecipes += ImmersiveEngineering.Sawmill(inputStr, isTag, outputStr, countInt, energyInt);
             newWindow.writeIntoRecipeTextBox(allTheRecipes);
         }
     }

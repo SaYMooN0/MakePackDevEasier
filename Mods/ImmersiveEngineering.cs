@@ -7,6 +7,7 @@ namespace MDE.Mods
     {
         static string crusherType = "\"type\": \"immersiveengineering:crusher\"";
         static string pressingType = "\"type\":\"immersiveengineering:metal_press\"";
+        static string sawmillType = "\"type\":\"immersiveengineering:sawmill\"";
         static string plateMold = "\"mold\":\"immersiveengineering:mold_plate\"";
 
         public static string Crusher1to1(string input, bool isTag, string output, int count, double energy)
@@ -48,6 +49,15 @@ namespace MDE.Mods
             else
                 recipe += $"{SF.wrapInItem(input)}";
             recipe += ','+SF.energyRequired(80);
+            return SF.wrapInCustom(recipe);
+        }
+        public static string Sawmill(string input, bool isTag, string output, int count, double energy)
+        {
+            string recipe = sawmillType + ",\"secondaries\":[]," + SF.result + SF.wrapInItemWithCount(output, count) + ',' +SF.energyRequired(energy/2)+','+ SF.input;
+            if (isTag)
+                recipe += SF.wrapInTag(input);
+            else
+                recipe += SF.wrapInItem(input);
             return SF.wrapInCustom(recipe);
         }
     }
