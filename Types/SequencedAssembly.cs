@@ -170,10 +170,7 @@ namespace MDE.Types
         {
             string isCorrect = isCorrectInput();
             if (isCorrect == "0")
-            {
-                MessageBox.Show("all is ok");
-            }
-            //makeNewRecipe();
+            makeNewRecipe();
             else
                 MessageBox.Show(isCorrect);
         }
@@ -208,37 +205,24 @@ namespace MDE.Types
             else
                 return "Choose at least 1 recipe";
         }
-        //private void makeNewRecipe()
-        //{
-        //    bool isTag = false;
-        //    string allTheRecipes = "";
-        //    inputStr = input.Text.Substring(1, input.Text.Length - 2);
-        //    outputStr = output.Text.Substring(1, output.Text.Length - 2);
-        //    fluidAmountInt = Int32.Parse(fluidAmount.Text);
-        //    fluidStr = fluid.Text.Replace("\'", string.Empty);
-        //    fluidStr = fluid.Text.Replace("\"", string.Empty);
-        //    if (inputStr[0] == '#')
-        //    {
-        //        isTag = true;
-        //        inputStr = inputStr.Substring(1, inputStr.Length - 1);
-        //    }
-        //    if ((bool)chB_Create.IsChecked)
-        //    {
-        //        allTheRecipes += Create.Filling(inputStr, isTag, fluidStr, fluidAmountInt, outputStr);
-        //    }
-        //    if ((bool)chB_DoReducing.IsChecked)
-        //    {
-        //        fluidAmountInt = (int)(0.9 * fluidAmountInt);
-        //    }
-        //    if ((bool)chB_Thermal.IsChecked)
-        //    {
-        //        allTheRecipes += ThermalExpansion.Filling(inputStr, isTag, fluidStr, fluidAmountInt, outputStr);
-        //    }
-        //    if ((bool)chB_IF.IsChecked)
-        //    {
-        //        allTheRecipes += IndustrialForegoing.Filling(inputStr, isTag, fluidStr, fluidAmountInt, outputStr);
-        //    }
-        //    newWindow.writeIntoRecipeTextBox(allTheRecipes);
-        //}
+        private void makeNewRecipe()
+        {
+            bool isTag = false;
+            string allTheRecipes = "";
+            //inputStr = input.Text.Substring(1, input.Text.Length - 2);
+            //outputStr = output.Text.Substring(1, output.Text.Length - 2);
+            //fluidAmountInt = Int32.Parse(fluidAmount.Text);
+            //fluidStr = fluid.Text.Replace("\'", string.Empty);
+            //fluidStr = fluid.Text.Replace("\"", string.Empty);
+            for (int i = 0; i < 8; i++)
+            {
+                if (ComboBoxes[i].SelectedItem != null)
+                {
+
+                }
+
+            }
+            newWindow.writeIntoRecipeTextBox(allTheRecipes);
+        }
     }
 }

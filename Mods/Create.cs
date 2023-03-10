@@ -56,7 +56,7 @@ namespace MDE.Mods
             recipe += "]," + SF.processTime(energy + 20);
             return SF.wrapInCustom(recipe);
         }
-        public static string Filling(string input, bool isTag,string fluid, int fluidAmount, string output)
+        public static string Filling(string input, bool isTag, string fluid, int fluidAmount, string output)
         {
             string recipe = fillingType + ',' + SF.ingredients;
             if (isTag)
@@ -64,7 +64,7 @@ namespace MDE.Mods
             else
                 recipe += $"[{SF.wrapInItem(input)},";
             recipe += '{' + SF.fluid + $"\"{fluid}\",{SF.nbtEmpty}," + SF.amount + fluidAmount + "}],";
-            recipe+= SF.results + $"[{SF.wrapInItem(output)}]";
+            recipe += SF.results + $"[{SF.wrapInItem(output)}]";
             return SF.wrapInCustom(recipe);
         }
         public static string Pressing(string input, bool isTag, string output)
@@ -88,9 +88,13 @@ namespace MDE.Mods
                 recipe += "," + SF.count(count) + "]";
             else
                 recipe += "]";
-            recipe += ',' + SF.results + $"[{SF.wrapInItem(output)}],"+SF.processTime(time);
+            recipe += ',' + SF.results + $"[{SF.wrapInItem(output)}]," + SF.processTime(time);
             return SF.wrapInCustom(recipe);
         }
+        //public static string SequencedAssembly()
+        //{
+
+        //}
 
     }
 }
