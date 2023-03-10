@@ -8,20 +8,20 @@ namespace MDE
 {
     class RecipeTypeForCreateSequencedAssembly
     {
-        type Type;
-        string Fluid { get; set; }
-        string Item { get; set; }
-        int FluidAmount { get; set; }
-        RecipeTypeForCreateSequencedAssembly(type t)
+        public type Type;
+        public string Fluid { get; set; }
+        public string Item { get; set; }
+        public int FluidAmount { get; set; }
+        public RecipeTypeForCreateSequencedAssembly(type t)
         {
             this.Type = t;
         }
-        RecipeTypeForCreateSequencedAssembly(string item)
+        public RecipeTypeForCreateSequencedAssembly(string item)
         {
             this.Type = type.AddingItem;
             Item = item;
         }
-        RecipeTypeForCreateSequencedAssembly(string fluid, int amount)
+        public RecipeTypeForCreateSequencedAssembly(string fluid, int amount)
         {
             this.Type = type.Filling;
             Fluid= fluid;

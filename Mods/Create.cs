@@ -91,10 +91,15 @@ namespace MDE.Mods
             recipe += ',' + SF.results + $"[{SF.wrapInItem(output)}]," + SF.processTime(time);
             return SF.wrapInCustom(recipe);
         }
-        //public static string SequencedAssembly()
-        //{
-
-        //}
+        public static string SequencedAssembly(List<RecipeTypeForCreateSequencedAssembly> r)
+        {
+            string recipe="";
+            for (int i = 0; i < r.Count; i++)
+            {
+                recipe += r[i].Type.ToString() + "\n";
+            }
+            return recipe;
+        }
 
     }
 }

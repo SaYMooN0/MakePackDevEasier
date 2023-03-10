@@ -8,6 +8,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows;
 using System.Reflection;
+using System.Xml.Linq;
+using MDE.Mods;
 
 namespace MDE.Types
 {
@@ -208,21 +210,36 @@ namespace MDE.Types
         private void makeNewRecipe()
         {
             bool isTag = false;
-            string allTheRecipes = "";
-            //inputStr = input.Text.Substring(1, input.Text.Length - 2);
-            //outputStr = output.Text.Substring(1, output.Text.Length - 2);
-            //fluidAmountInt = Int32.Parse(fluidAmount.Text);
-            //fluidStr = fluid.Text.Replace("\'", string.Empty);
-            //fluidStr = fluid.Text.Replace("\"", string.Empty);
+            List<RecipeTypeForCreateSequencedAssembly> recipes = new List<RecipeTypeForCreateSequencedAssembly>();
             for (int i = 0; i < 8; i++)
             {
                 if (ComboBoxes[i].SelectedItem != null)
                 {
-
+                    Label l = ComboBoxes[i].SelectedItem as Label;
+                    string str = l.Content.ToString();
+                    switch (str)
+                    {
+                        case "Filling":
+                            recipes.Add(new RecipeTypeForCreateSequencedAssembly(supTextBoxes[i].Item1.Text, Int32.Parse(supTextBoxes[i].Item2.Text)));
+                            break;
+                        case "AddingItem":
+                            recipes.Add(new RecipeTypeForCreateSequencedAssembly(supTextBoxes[i].Item1.Text));
+                            break;
+                        case "Polishing":
+                            recipes.Add(new RecipeTypeForCreateSequencedAssembly(type.Polishing));
+                            break;
+                        case "Pressing":
+                            recipes.Add(new RecipeTypeForCreateSequencedAssembly(type.Pressing));
+                            break;
+                        case "Sawmill":
+                            recipes.Add(new RecipeTypeForCreateSequencedAssembly(type.Sawmill));
+                            break;
+                        default: break;
+                    }
                 }
 
             }
-            newWindow.writeIntoRecipeTextBox(allTheRecipes);
+            newWindow.writeIntoRecipeTextBox(Create.SequencedAssembly(recipes));
         }
     }
 }
