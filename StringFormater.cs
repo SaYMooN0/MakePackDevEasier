@@ -1,4 +1,6 @@
-﻿namespace MDE
+﻿using static System.Net.Mime.MediaTypeNames;
+
+namespace MDE
 {
     public class SF//String formating class
     {
@@ -9,6 +11,8 @@
         public const string mainOutput = "\"mainOutput\":";
         public const string ingredients = "\"ingredients\":";
         public const string ingredient = "\"ingredient\":";
+        public const string transitional = " \"transitionalItem\":";
+        public const string sequence = "  \"sequence\":";
         public const string xp = "\"experience\" :";
         public const string secondaries = "\"secondaries\" :";
         public const string amount = "\"amount\":";
@@ -16,7 +20,9 @@
         public const string fluidtag = "\"fluid_tag\":";
         public const string nbtEmpty = "\"nbt\": {}";
 
+        public static string removeWraping(string s){ if (s.Length > 14) { s = s.Substring(13); return s.Remove(s.Length - 2); } return " "; }
         static public string count(int a){ return "\"count\":"+a.ToString(); }
+        static public string loops(int a){ return "\"loops\":"+a.ToString(); }
         static public string chance(double a){ return "\"chance\":" + a.ToString("0.00", System.Globalization.CultureInfo.InvariantCulture); }
         static public string processTime(double a){ return "\"processingTime\":" + (a).ToString(); }
         static public string energyMod(double a){ return "\"energy_mod\":" + (a/100).ToString("0.00", System.Globalization.CultureInfo.InvariantCulture); }

@@ -10,12 +10,12 @@ namespace MDE.Mods
 {
     internal class Create //class for the Create Mod
     {
-        static string millingType = "\"type\": \"create:milling\"";
-        static string polishingType = "\"type\": \"create:sandpaper_polishing\"";
-        static string fillingType = "\"type\": \"create:filling\"";
-        static string assemblyType = "\"type\": \"create:sequenced_assembly\"";
-        static string pressingType = "\"type\": \"create:pressing\"";
-        static string cuttingType = "\"type\": \"create:cutting\"";
+        const string millingType = "\"type\": \"create:milling\"";
+        const string polishingType = "\"type\": \"create:sandpaper_polishing\"";
+        const string fillingType = "\"type\": \"create:filling\"";
+        const string pressingType = "\"type\": \"create:pressing\"";
+        const string cuttingType = "\"type\": \"create:cutting\"";
+        const string deployingType = "\"type\": \"create:deploying\"";
         public static string Crusher1to1(string input, bool isTag, string output, int count, double energy)
         {
             string recipe = millingType + ',' + SF.ingredients;
@@ -91,14 +91,16 @@ namespace MDE.Mods
             recipe += ',' + SF.results + $"[{SF.wrapInItem(output)}]," + SF.processTime(time);
             return SF.wrapInCustom(recipe);
         }
-        public static string SequencedAssembly(List<RecipeTypeForCreateSequencedAssembly> r)
+        public static string Deploying(string input, string deploy, string output, bool isTag)
         {
-            string recipe="";
-            for (int i = 0; i < r.Count; i++)
-            {
-                recipe += r[i].Type.ToString() + "\n";
-            }
-            return recipe;
+            string recipe = deployingType + ',' + SF.ingredients;
+            if (isTag)
+                recipe += $"[{SF.wrapInTag(input)}";
+            else
+                recipe += $"[{SF.wrapInItem(input)}";
+            recipe +=SF.wrapInItem(deploy)+ "]";
+            recipe += ',' + SF.results + $"[{SF.wrapInItem(output)}]";
+            return SF.wrapInCustom(recipe);
         }
 
     }

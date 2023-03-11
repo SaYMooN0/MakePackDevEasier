@@ -24,6 +24,7 @@ namespace MDE.Types
         TextBox TB_Loops, TB_Input, TB_Output, TB_Transitional;
         Label Sawmill, Pressing, Filling, Polishing, AddingItem, Label_Loops, Label_Input, Label_Output, Label_Transitional;
         int loopsCount;
+        string itemIn, itemOut, itemTrans;
         public SequencedAssembly()
         {
             orangeBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF4C2B"));
@@ -211,6 +212,14 @@ namespace MDE.Types
         {
             bool isTag = false;
             List<RecipeTypeForCreateSequencedAssembly> recipes = new List<RecipeTypeForCreateSequencedAssembly>();
+            itemIn= TB_Input.Text.Substring(1, TB_Input.Text.Length-2);
+            itemOut = TB_Output.Text.Substring(1, TB_Output.Text.Length-2);
+            itemTrans = TB_Transitional.Text.Substring(1, TB_Transitional.Text.Length - 2);
+            if (itemIn[0] == '#')
+            {
+                isTag = true;
+                itemIn = itemIn.Substring(1, itemIn.Length - 1);
+            }
             for (int i = 0; i < 8; i++)
             {
                 if (ComboBoxes[i].SelectedItem != null)
@@ -220,7 +229,12 @@ namespace MDE.Types
                     switch (str)
                     {
                         case "Filling":
-                            recipes.Add(new RecipeTypeForCreateSequencedAssembly(supTextBoxes[i].Item1.Text, Int32.Parse(supTextBoxes[i].Item2.Text)));
+                            {
+                                string fluidStr = supTextBoxes[i].Item1.Text;
+                                fluidStr = fluidStr.Replace("\'", string.Empty);
+                                fluidStr = fluidStr.Replace("\"", string.Empty);
+                                recipes.Add(new RecipeTypeForCreateSequencedAssembly(fluidStr, Int32.Parse(supTextBoxes[i].Item2.Text)));
+                            }
                             break;
                         case "AddingItem":
                             recipes.Add(new RecipeTypeForCreateSequencedAssembly(supTextBoxes[i].Item1.Text));
@@ -239,7 +253,7 @@ namespace MDE.Types
                 }
 
             }
-            newWindow.writeIntoRecipeTextBox(Create.SequencedAssembly(recipes));
+            newWindow.writeIntoRecipeTextBox(CreateSequencedAssembly.SequencedAssembly(recipes, itemIn, itemTrans, itemOut, isTag, loopsCount));
         }
     }
 }
