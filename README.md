@@ -20,4 +20,4 @@ Plans for the not-so-near future:
 
 2.Add support for Masterful Machinery.
 
-3.mprove the visual part of the application.
+3.Improve the visual part of the application.
