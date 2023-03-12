@@ -5,16 +5,29 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MDE"
         mc:Ignorable="d"
-        Title="MainWindow" Height="850" Width="900">
-    <!--<Window.Resources>
-        <MDE:CenterConverter x:Key="CenterConverter"/>
-    </Window.Resources>-->
-    <Canvas Background="#2D384A" Height="850" Width="900">
-        <Canvas x:Name="FirstLoadContent" Height="850" Width="900" Visibility="Visible">
-            <Label HorizontalAlignment="Center" VerticalAlignment="Center" Content="MDE" Foreground="White" FontSize="36" FontWeight="Bold"/>
-            
+        Title="MainWindow" Height="850" Width="900" MinWidth="400"  MinHeight="490">
+    <Canvas Background="#2D384A"  Width="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=Window}}" Height="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType=Window}}">
+        <Canvas x:Name="ContentFirstLoad" Width="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=Window}}" Height="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType=Window}}" Visibility="Visible">
+            <Label Content="MDE" Foreground="White" FontSize="106" FontWeight="Bold" 
+           HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+           Width="{Binding ActualWidth, ElementName=ContentFirstLoad}"
+           Height="{Binding ActualHeight, ElementName=ContentFirstLoad}" Canvas.Top="-200" />
+            <Grid Canvas.Bottom="-100"  Width="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=Window}}" Height="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType=Window}}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0" Height="90"  Background="#FF4C2B" Content="Create new recipe" FontSize="24" FontWeight="Bold" Click="ChangeContentToCreateRecipe" Margin="15">
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="14"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+            </Grid>
         </Canvas>
-        <Canvas x:Name="CreateRecipeContent" Height="850" Width="900" Visibility="Hidden">
+        <Canvas x:Name="ContentCreateRecipe" Height="850" Width="900" Visibility="Hidden">
         <Grid ShowGridLines="False"  Height="850" Width="400">
             <Grid.RowDefinitions>
                 <RowDefinition></RowDefinition>

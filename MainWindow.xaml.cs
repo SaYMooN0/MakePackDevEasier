@@ -13,6 +13,11 @@ namespace MDE
         {
             InitializeComponent();
         }
+        private void ChangeContentToCreateRecipe(object sender, RoutedEventArgs e)
+        {
+            this.ContentFirstLoad.Visibility = Visibility.Hidden;
+            this.ContentCreateRecipe.Visibility = Visibility.Visible;
+        }
         enum recipeType { Crusher1to1, Crusher1toMany, Polishing, Pressing, Filling, Nothing, SequencedAssembly, Sawmill };
         private void CreateRecipe_Click(object sender, RoutedEventArgs e)
         {
