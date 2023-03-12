@@ -6,8 +6,12 @@
         xmlns:local="clr-namespace:MDE"
         mc:Ignorable="d"
         Title="MainWindow" Height="850" Width="900">
-
     <Canvas Background="#2D384A" Height="850" Width="900">
+        <Canvas x:Name="FirstLoadContent" Height="850" Width="900" Visibility="Visible">
+            <Label HorizontalAlignment="Center" VerticalAlignment="Center" Content="MDE" Foreground="White" FontSize="36" FontWeight="Bold"/>
+            
+        </Canvas>
+        <Canvas x:Name="CreateRecipeContent" Height="850" Width="900" Visibility="Hidden">
         <Grid ShowGridLines="False"  Height="850" Width="400">
             <Grid.RowDefinitions>
                 <RowDefinition></RowDefinition>
@@ -50,5 +54,6 @@
                 </Style>
             </Button.Resources>
         </Button>
+        </Canvas>
     </Canvas>
 </Window>
