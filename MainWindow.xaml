@@ -70,6 +70,13 @@
                 </Style>
             </Button.Resources>
         </Button>
+            <Button Height="60" Width="180" Canvas.Right="75" Canvas.Bottom="80" Background="#FF4C2B" Content="Return" FontSize="26" FontWeight="Bold" Click="ChangeContentToFirstLoad">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
         </Canvas>
     </Canvas>
 </Window>
