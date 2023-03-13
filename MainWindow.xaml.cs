@@ -17,11 +17,19 @@ namespace MDE
         {
             this.ContentFirstLoad.Visibility = Visibility.Hidden;
             this.ContentCreateRecipe.Visibility = Visibility.Visible;
+            this.ReturningButton.Visibility = Visibility.Visible;
+        }
+        private void ChangeContentToContentAddItem(object sender, RoutedEventArgs e)
+        {
+            this.ContentFirstLoad.Visibility = Visibility.Hidden;
+            this.ContentAddItem.Visibility = Visibility.Visible;
+            this.ReturningButton.Visibility = Visibility.Visible;
         }
         private void ChangeContentToFirstLoad(object sender, RoutedEventArgs e)
         {
             this.ContentFirstLoad.Visibility = Visibility.Visible;
             this.ContentCreateRecipe.Visibility = Visibility.Hidden;
+            this.ReturningButton.Visibility = Visibility.Hidden;
         }
         enum recipeType { Crusher1to1, Crusher1toMany, Polishing, Pressing, Filling, Nothing, SequencedAssembly, Sawmill };
         private void CreateRecipe_Click(object sender, RoutedEventArgs e)
