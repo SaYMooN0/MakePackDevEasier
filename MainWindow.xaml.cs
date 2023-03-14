@@ -1,6 +1,7 @@
 ﻿using MDE.Types;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media.Imaging;
 
 namespace MDE
 {
@@ -29,6 +30,7 @@ namespace MDE
         {
             this.ContentFirstLoad.Visibility = Visibility.Visible;
             this.ContentCreateRecipe.Visibility = Visibility.Hidden;
+            this.ContentAddItem.Visibility = Visibility.Hidden;
             this.ReturningButton.Visibility = Visibility.Hidden;
         }
         enum recipeType { Crusher1to1, Crusher1toMany, Polishing, Pressing, Filling, Nothing, SequencedAssembly, Sawmill };
@@ -105,6 +107,45 @@ namespace MDE
                 return recipeType.Sawmill;
             else return recipeType.Nothing;
 
+        }
+        private void MainWindow_OnDrop(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                var files = (string[])e.Data.GetData(DataFormats.FileDrop);
+                foreach (var file in files)
+                {
+                    if (file.EndsWith(".png"))
+                    {
+                        // Отображение только первого файла
+                        SetImage(file);
+                        break;
+                    }
+                }
+            }
+        }
+
+        private void Image_OnDrop(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                var files = (string[])e.Data.GetData(DataFormats.FileDrop);
+                foreach (var file in files)
+                {
+                    if (file.EndsWith(".png"))
+                    {
+                        SetImage(file);
+                        break;
+                    }
+                }
+            }
+        }
+
+        private void SetImage(string filePath)
+        {
+            var bitmap = new BitmapImage(new System.Uri(filePath));
+            Image.Source = bitmap;
+            //FileName.Content = System.IO.Path.GetFileName(filePath);
         }
     }
 }

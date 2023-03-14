@@ -5,7 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MDE"
         mc:Ignorable="d"
-        Title="MainWindow" Height="850" Width="900" MinWidth="400"  MinHeight="490">
+        Title="MainWindow" Height="850" Width="900" MinWidth="400"  MinHeight="490"
+        AllowDrop="True"
+        Drop="MainWindow_OnDrop">
     <Canvas Background="#2D384A"  Width="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=Window}}" Height="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType=Window}}">
         <Canvas x:Name="ContentFirstLoad" Width="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=Window}}" Height="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType=Window}}" Visibility="Visible">
             <Label Content="MDE" Foreground="White" FontSize="106" FontWeight="Bold" 
@@ -79,8 +81,31 @@
             </Button>
         </Canvas>
         <Canvas x:Name="ContentAddItem" Height="850" Width="900" Visibility="Hidden">
-            <Label Content="Item Name:" Foreground="White" FontSize="48" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Width="280" Height="80" Canvas.Top="20" Canvas.Left="20"/>
-            <Label Content="Stack max size:" Foreground="White" FontSize="48" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Width="360" Height="80" Canvas.Top="100" Canvas.Left="20"/>
+            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Orientation="Horizontal" Margin="20">
+                <Border BorderBrush="White" BorderThickness="2">
+                    <Image x:Name="Image" Width="192" Height="192"
+                   AllowDrop="True"
+                   Drop="Image_OnDrop"
+                   RenderOptions.BitmapScalingMode="NearestNeighbor"/>
+                </Border>
+            </StackPanel>
+            <Grid Canvas.Bottom="200" Height="200">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Label Content="Item Name:" Foreground="White" FontSize="48" FontWeight="Bold" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Grid.Row="0" />
+                <Label Content="Texture:" Foreground="White" FontSize="48" FontWeight="Bold" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Grid.Row="1"/>
+                <Label Content="Stack max size:" Foreground="White" FontSize="48" FontWeight="Bold" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Grid.Row="2"/>
+                <TextBox x:Name="TB_Name" FontSize="38" FontWeight="Bold" HorizontalContentAlignment="Left" VerticalContentAlignment="Center"  Width="280" Margin="10" Grid.Row="0" Grid.Column="1"/>
+                <TextBox x:Name="TB_Texture" FontSize="38" FontWeight="Bold" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Width="280" Margin="10" Grid.Row="1"  Grid.Column="1"/>
+                <TextBox x:Name="TB_StackSize" Text="64" FontSize="38" FontWeight="Bold" HorizontalAlignment="Right" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Width="100" Margin="10" Grid.Row="2"  Grid.Column="1"/>
+            </Grid>
         </Canvas>
         <Button Height="60" Width="180" Canvas.Right="75" Canvas.Bottom="80" Background="#FF4C2B" Content="Return" FontSize="26" FontWeight="Bold" Click="ChangeContentToFirstLoad" x:Name="ReturningButton" Visibility="Hidden">
             <Button.Resources>
