@@ -99,11 +99,11 @@
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-                <Label Content="Item Name:" Foreground="White" FontSize="48" FontWeight="Bold" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Grid.Row="0" />
-                <Label Content="Texture:" Foreground="White" FontSize="48" FontWeight="Bold" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Grid.Row="1"/>
-                <Label Content="Stack max size:" Foreground="White" FontSize="48" FontWeight="Bold" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Grid.Row="2"/>
-                <TextBox x:Name="TB_Name" FontSize="38" FontWeight="Bold" HorizontalContentAlignment="Left" VerticalContentAlignment="Center"  Width="280" Margin="10" Grid.Row="0" Grid.Column="1"/>
-                <TextBox x:Name="TB_Texture" FontSize="38" FontWeight="Bold" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Width="280" Margin="10" Grid.Row="1"  Grid.Column="1"/>
+                <Label Content="Item Name:" Foreground="White" FontSize="40" FontWeight="Bold" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Grid.Row="0" />
+                <Label Content="Texture:" Foreground="White" FontSize="40" FontWeight="Bold" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Grid.Row="1"/>
+                <Label Content="Stack max size:" Foreground="White" FontSize="40" FontWeight="Bold" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Grid.Row="2"/>
+                <TextBox x:Name="TB_Name" FontSize="38" FontWeight="Bold" HorizontalContentAlignment="Left" VerticalContentAlignment="Center"  Width="480" Margin="10" Grid.Row="0" Grid.Column="1"/>
+                <TextBox x:Name="TB_Texture" FontSize="38" FontWeight="Bold" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Width="480" Margin="10" Grid.Row="1"  Grid.Column="1"/>
                 <TextBox x:Name="TB_StackSize" Text="64" FontSize="38" FontWeight="Bold" HorizontalAlignment="Right" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Width="100" Margin="10" Grid.Row="2"  Grid.Column="1"/>
             </Grid>
         </Canvas>

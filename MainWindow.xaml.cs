@@ -2,7 +2,8 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
-
+using System;
+using System.Collections.Generic;
 namespace MDE
 {
     /// <summary>
@@ -144,8 +145,12 @@ namespace MDE
         private void SetImage(string filePath)
         {
             var bitmap = new BitmapImage(new System.Uri(filePath));
+            int ind=filePath.LastIndexOf('\\')+1;
+            //MessageBox.Show(filePath+"\n"+ind.ToString()+"\n"+filePath.Length.ToString()+"\n"+filePath.Substring(0));
+            filePath = filePath.Substring(ind);
             Image.Source = bitmap;
-            //FileName.Content = System.IO.Path.GetFileName(filePath);
+            TB_Name.Text = filePath.Replace(".png", string.Empty);
+            TB_Texture.Text = filePath;
         }
     }
 }
