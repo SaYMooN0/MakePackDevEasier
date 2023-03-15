@@ -89,8 +89,9 @@
                    RenderOptions.BitmapScalingMode="NearestNeighbor"/>
                 </Border>
             </StackPanel>
-            <Grid Canvas.Bottom="200" Height="200">
+            <Grid Canvas.Bottom="380" Height="260">
                 <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
@@ -99,15 +100,25 @@
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-                <Label Content="Item Name:" Foreground="White" FontSize="40" FontWeight="Bold" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Grid.Row="0" />
-                <Label Content="Texture:" Foreground="White" FontSize="40" FontWeight="Bold" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Grid.Row="1"/>
-                <Label Content="Stack max size:" Foreground="White" FontSize="40" FontWeight="Bold" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Grid.Row="2"/>
-                <TextBox x:Name="TB_Name" FontSize="38" FontWeight="Bold" HorizontalContentAlignment="Left" VerticalContentAlignment="Center"  Width="480" Margin="10" Grid.Row="0" Grid.Column="1"/>
-                <TextBox x:Name="TB_Texture" FontSize="38" FontWeight="Bold" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Width="480" Margin="10" Grid.Row="1"  Grid.Column="1"/>
-                <TextBox x:Name="TB_StackSize" Text="64" FontSize="38" FontWeight="Bold" HorizontalAlignment="Right" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Width="100" Margin="10" Grid.Row="2"  Grid.Column="1"/>
+                <Label Content="Item Name:" Foreground="White" FontSize="38" FontWeight="Bold" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Grid.Row="0" />
+                <Label Content="Texture:" Foreground="White" FontSize="38" FontWeight="Bold" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Grid.Row="1"/>
+                <Label Content="Stack max size:" Foreground="White" FontSize="38" FontWeight="Bold" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Grid.Row="2"/>
+                <Label Content="Click to add tags:" Foreground="White" FontSize="38" FontWeight="Bold" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Grid.Row="3"/>
+                <TextBox x:Name="TB_Name" FontSize="32"  HorizontalContentAlignment="Left" VerticalContentAlignment="Center"  Width="480" Margin="12" Grid.Row="0" Grid.Column="1"/>
+                <TextBox x:Name="TB_Texture" FontSize="32"  HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Width="480" Margin="12" Grid.Row="1"  Grid.Column="1"/>
+                <TextBox x:Name="TB_StackSize" Text="64" FontSize="32" HorizontalAlignment="Right" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Width="100" Margin="12" Grid.Row="2"  Grid.Column="1"/>
+                <Button  Width="220" Canvas.Right="75" Background="#FF4C2B" Content="Add tags" FontSize="26" FontWeight="Bold" Click="ChangeContentToFirstLoad" x:Name="AddTagButton" Grid.Row="3" Grid.Column="1" Margin="6" HorizontalAlignment="Right">
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="10"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
             </Grid>
+            <Label Content="Result:" Foreground="White" FontSize="42" FontWeight="Bold" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Canvas.Bottom="280" />
+            <TextBox Height="160" Width="810" FontSize="20" Canvas.Bottom="120" Canvas.Left="10"/>
         </Canvas>
-        <Button Height="60" Width="180" Canvas.Right="75" Canvas.Bottom="80" Background="#FF4C2B" Content="Return" FontSize="26" FontWeight="Bold" Click="ChangeContentToFirstLoad" x:Name="ReturningButton" Visibility="Hidden">
+        <Button Height="50" Width="180" Canvas.Right="75" Canvas.Bottom="60" Background="#FF4C2B" Content="Return" FontSize="26" FontWeight="Bold" Click="ChangeContentToFirstLoad" x:Name="ReturningButton" Visibility="Hidden">
             <Button.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="10"/>
