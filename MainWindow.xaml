@@ -107,7 +107,7 @@
                 <TextBox x:Name="TB_Name" FontSize="32"  HorizontalContentAlignment="Left" VerticalContentAlignment="Center"  Width="480" Margin="12" Grid.Row="0" Grid.Column="1"/>
                 <TextBox x:Name="TB_Texture" FontSize="32"  HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Width="480" Margin="12" Grid.Row="1"  Grid.Column="1"/>
                 <TextBox x:Name="TB_StackSize" Text="64" FontSize="32" HorizontalAlignment="Right" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Width="100" Margin="12" Grid.Row="2"  Grid.Column="1"/>
-                <Button  Width="220" Canvas.Right="75" Background="#FF4C2B" Content="Add tags" FontSize="26" FontWeight="Bold" Click="ChangeContentToFirstLoad" x:Name="AddTagButton" Grid.Row="3" Grid.Column="1" Margin="6" HorizontalAlignment="Right">
+                <Button  Width="220" Canvas.Right="75" Background="#FF4C2B" Content="Add tags" FontSize="26" FontWeight="Bold" Click="AddTagButtonClicked" x:Name="AddTagButton" Grid.Row="3" Grid.Column="1" Margin="6" HorizontalAlignment="Right">
                     <Button.Resources>
                         <Style TargetType="Border">
                             <Setter Property="CornerRadius" Value="10"/>
@@ -117,6 +117,13 @@
             </Grid>
             <Label Content="Result:" Foreground="White" FontSize="42" FontWeight="Bold" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Canvas.Bottom="280" />
             <TextBox Height="160" Width="810" FontSize="20" Canvas.Bottom="120" Canvas.Left="10"/>
+            <Button  Width="220" Height="50" Canvas.Left="10"  Canvas.Bottom="60" Background="#FF4C2B" Content="Create Item" FontSize="26" FontWeight="Bold" Click="CreateItemButtonClicked">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
         </Canvas>
         <Button Height="50" Width="180" Canvas.Right="75" Canvas.Bottom="60" Background="#FF4C2B" Content="Return" FontSize="26" FontWeight="Bold" Click="ChangeContentToFirstLoad" x:Name="ReturningButton" Visibility="Hidden">
             <Button.Resources>

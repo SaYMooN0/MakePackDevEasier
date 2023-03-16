@@ -146,11 +146,29 @@ namespace MDE
         {
             var bitmap = new BitmapImage(new System.Uri(filePath));
             int ind=filePath.LastIndexOf('\\')+1;
-            //MessageBox.Show(filePath+"\n"+ind.ToString()+"\n"+filePath.Length.ToString()+"\n"+filePath.Substring(0));
             filePath = filePath.Substring(ind);
             Image.Source = bitmap;
             TB_Name.Text = filePath.Replace(".png", string.Empty);
             TB_Texture.Text = filePath;
+        }
+        private void AddTagButtonClicked(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("adding tags");
+        }
+        private void CreateItemButtonClicked(object sender, RoutedEventArgs e)
+        {
+            if (isCorrectInput())
+            {
+                MessageBox.Show("Creating item");
+            }
+            else
+                MessageBox.Show("Incorrect input");
+        }
+        private bool isCorrectInput()
+        {
+            if (String.IsNullOrEmpty(TB_Name.Text) || String.IsNullOrEmpty(TB_Texture.Text))
+                return false;
+            return Int32.TryParse(TB_StackSize.Text, out int a);
         }
     }
 }
