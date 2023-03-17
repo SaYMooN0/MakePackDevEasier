@@ -4,6 +4,8 @@ using System.Windows.Controls;
 using System.Windows.Media.Imaging;
 using System;
 using System.Collections.Generic;
+using MDE.Recipes_Types;
+
 namespace MDE
 {
     /// <summary>
@@ -149,7 +151,6 @@ namespace MDE
             filePath = filePath.Substring(ind);
             Image.Source = bitmap;
             TB_Name.Text = filePath.Replace(".png", string.Empty);
-            TB_Texture.Text = filePath;
         }
         private void AddTagButtonClicked(object sender, RoutedEventArgs e)
         {
@@ -160,13 +161,18 @@ namespace MDE
             if (isCorrectInput())
             {
                 MessageBox.Show("Creating item");
+                TB_Result.Text = CreatingItemClass.CreateItem(TB_Name.Text, TB_StackSize.Text);
             }
             else
                 MessageBox.Show("Incorrect input");
+        } 
+        private void CopyResult(object sender, RoutedEventArgs e)
+        {
+            //
         }
         private bool isCorrectInput()
         {
-            if (String.IsNullOrEmpty(TB_Name.Text) || String.IsNullOrEmpty(TB_Texture.Text))
+            if (String.IsNullOrEmpty(TB_Name.Text))
                 return false;
             return Int32.TryParse(TB_StackSize.Text, out int a);
         }

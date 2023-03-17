@@ -31,7 +31,9 @@ namespace MDE
         static public string wrapInItemWithCount(string s, int a){return "{\"item\": \'"+s+"\',"+count(a)+" }";}
         static public string wrapInItemWithChance(string s, double b){ return "{\"item\": \'" + s + "\'," + chance(b) + '}'; }
         static public string wrapInTag(string s){return "{ \"tag\": \'"+s+"\' }";}
-        static public string wrapInCustom(string s){return "event.custom({" + s + "})\n";}
+        static public string wrapInCustomRecipeEvent(string s){return "event.custom({" + s + "})\n";}
+        static public string wrapInCreateEvent(string s){return "event.create(" + s + ")";}
+        static public string wrapInItemRegistryEvent(string s){return "onEvent('item.registry', event => {" + s + "})\n";}
         static public string wrapInFluidName(string s, int a){return "\"inputFluid\": \"{FluidName:\\\""+s+"\\\",Amount:"+a+"}\""; }
     }
 }

@@ -20,7 +20,7 @@ namespace MDE.Mods
                 recipe += $"[{SF.wrapInItem(input)}";
             recipe += "]," + SF.wrapInFluidName(fluid, fluidAmount)+","+SF.processTime((int)(fluidAmount/15+30))+","+SF.output+SF.wrapInItemWithCount(output,1)+",";
             recipe += fillingType;
-            return SF.wrapInCustom(recipe);
+            return SF.wrapInCustomRecipeEvent(recipe);
         }
     }
 }

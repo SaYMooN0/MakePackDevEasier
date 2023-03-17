@@ -17,7 +17,7 @@ namespace MDE.Mods
             else
                 recipe += SF.wrapInItem(input);
             recipe += ',' + SF.result + SF.wrapInItemWithCount(output, count);
-            return SF.wrapInCustom(recipe);
+            return SF.wrapInCustomRecipeEvent(recipe);
         }
     }
 }

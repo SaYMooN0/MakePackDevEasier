@@ -8,10 +8,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Types\Mods\**" />
-    <EmbeddedResource Remove="Types\Mods\**" />
-    <None Remove="Types\Mods\**" />
-    <Page Remove="Types\Mods\**" />
+    <Compile Remove="Recipes_Types\Mods\**" />
+    <EmbeddedResource Remove="Recipes_Types\Mods\**" />
+    <None Remove="Recipes_Types\Mods\**" />
+    <Page Remove="Recipes_Types\Mods\**" />
   </ItemGroup>
 
 </Project>

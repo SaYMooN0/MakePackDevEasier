@@ -18,7 +18,7 @@ namespace MDE.Mods
             else
                 recipe += SF.wrapInItem(input);
             recipe += ',' + SF.energyRequired(energy);
-            return SF.wrapInCustom(recipe);
+            return SF.wrapInCustomRecipeEvent(recipe);
         }
         public static string Crusher1ToMany(string input, bool isTag, List<Tuple<string, double>> l, double energy)
         {
@@ -39,7 +39,7 @@ namespace MDE.Mods
             else
                 recipe += $"{SF.wrapInItem(input)}";
             recipe += ',' + SF.energyRequired(energy);
-            return SF.wrapInCustom(recipe);
+            return SF.wrapInCustomRecipeEvent(recipe);
         }
         public static string Pressing(string input, bool isTag, string output)
         {
@@ -49,7 +49,7 @@ namespace MDE.Mods
             else
                 recipe += $"{SF.wrapInItem(input)}";
             recipe += ','+SF.energyRequired(80);
-            return SF.wrapInCustom(recipe);
+            return SF.wrapInCustomRecipeEvent(recipe);
         }
         public static string Sawmill(string input, bool isTag, string output, int count, double energy)
         {
@@ -58,7 +58,7 @@ namespace MDE.Mods
                 recipe += SF.wrapInTag(input);
             else
                 recipe += SF.wrapInItem(input);
-            return SF.wrapInCustom(recipe);
+            return SF.wrapInCustomRecipeEvent(recipe);
         }
     }
 }

@@ -44,7 +44,7 @@ namespace MDE.Mods
                 recipe += ',';
             }
             recipe += "],"+SF.results+"["+SF.wrapInItem(itemOut)+"],"+SF.loops(loops);
-            return SF.wrapInCustom(recipe);
+            return SF.wrapInCustomRecipeEvent(recipe);
         }
        
     }

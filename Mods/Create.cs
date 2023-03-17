@@ -19,7 +19,7 @@ namespace MDE.Mods
             else
                 recipe += $"[{SF.wrapInItem(input)}]";
             recipe += ',' + SF.results + '[' + SF.wrapInItemWithCount(output, count) + "]," + SF.processTime(energy + 20);
-            return SF.wrapInCustom(recipe);
+            return SF.wrapInCustomRecipeEvent(recipe);
         }
         public static string Polishing(string input, bool isTag, string output)
         {
@@ -29,7 +29,7 @@ namespace MDE.Mods
             else
                 recipe += $"[{SF.wrapInItem(input)}]";
             recipe += ',' + SF.results + $"[{SF.wrapInItem(output)}]";
-            return SF.wrapInCustom(recipe);
+            return SF.wrapInCustomRecipeEvent(recipe);
         }
         public static string Crusher1ToMany(string input, bool isTag, List<Tuple<string, double>> l, double energy)
         {
@@ -49,7 +49,7 @@ namespace MDE.Mods
             }
             recipe = recipe.Substring(0, recipe.Length - 1);
             recipe += "]," + SF.processTime(energy + 20);
-            return SF.wrapInCustom(recipe);
+            return SF.wrapInCustomRecipeEvent(recipe);
         }
         public static string Filling(string input, bool isTag, string fluid, int fluidAmount, string output)
         {
@@ -60,7 +60,7 @@ namespace MDE.Mods
                 recipe += $"[{SF.wrapInItem(input)},";
             recipe += '{' + SF.fluid + $"\"{fluid}\",{SF.nbtEmpty}," + SF.amount + fluidAmount + "}],";
             recipe += SF.results + $"[{SF.wrapInItem(output)}]";
-            return SF.wrapInCustom(recipe);
+            return SF.wrapInCustomRecipeEvent(recipe);
         }
         public static string Pressing(string input, bool isTag, string output)
         {
@@ -70,7 +70,7 @@ namespace MDE.Mods
             else
                 recipe += $"[{SF.wrapInItem(input)}]";
             recipe += ',' + SF.results + $"[{SF.wrapInItem(output)}]";
-            return SF.wrapInCustom(recipe);
+            return SF.wrapInCustomRecipeEvent(recipe);
         }
         public static string Sawmill(string input, bool isTag, string output, int count, int time)
         {
@@ -84,7 +84,7 @@ namespace MDE.Mods
             else
                 recipe += "]";
             recipe += ',' + SF.results + $"[{SF.wrapInItem(output)}]," + SF.processTime(time);
-            return SF.wrapInCustom(recipe);
+            return SF.wrapInCustomRecipeEvent(recipe);
         }
         public static string Deploying(string input, string deploy, string output, bool isTag)
         {
@@ -95,7 +95,7 @@ namespace MDE.Mods
                 recipe += $"[{SF.wrapInItem(input)}";
             recipe +=SF.wrapInItem(deploy)+ "]";
             recipe += ',' + SF.results + $"[{SF.wrapInItem(output)}]";
-            return SF.wrapInCustom(recipe);
+            return SF.wrapInCustomRecipeEvent(recipe);
         }
 
     }

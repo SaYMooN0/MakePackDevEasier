@@ -101,13 +101,11 @@
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
                 <Label Content="Item Name:" Foreground="White" FontSize="38" FontWeight="Bold" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Grid.Row="0" />
-                <Label Content="Texture:" Foreground="White" FontSize="38" FontWeight="Bold" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Grid.Row="1"/>
-                <Label Content="Stack max size:" Foreground="White" FontSize="38" FontWeight="Bold" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Grid.Row="2"/>
-                <Label Content="Click to add tags:" Foreground="White" FontSize="38" FontWeight="Bold" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Grid.Row="3"/>
+                <Label Content="Stack max size:" Foreground="White" FontSize="38" FontWeight="Bold" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Grid.Row="1"/>
+                <Label Content="Click to add tags:" Foreground="White" FontSize="38" FontWeight="Bold" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Grid.Row="2"/>
                 <TextBox x:Name="TB_Name" FontSize="32"  HorizontalContentAlignment="Left" VerticalContentAlignment="Center"  Width="480" Margin="12" Grid.Row="0" Grid.Column="1"/>
-                <TextBox x:Name="TB_Texture" FontSize="32"  HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Width="480" Margin="12" Grid.Row="1"  Grid.Column="1"/>
-                <TextBox x:Name="TB_StackSize" Text="64" FontSize="32" HorizontalAlignment="Right" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Width="100" Margin="12" Grid.Row="2"  Grid.Column="1"/>
-                <Button  Width="220" Canvas.Right="75" Background="#FF4C2B" Content="Add tags" FontSize="26" FontWeight="Bold" Click="AddTagButtonClicked" x:Name="AddTagButton" Grid.Row="3" Grid.Column="1" Margin="6" HorizontalAlignment="Right">
+                <TextBox x:Name="TB_StackSize" Text="64" FontSize="32" HorizontalAlignment="Right" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Width="100" Margin="12" Grid.Row="1"  Grid.Column="1"/>
+                <Button  Width="220" Canvas.Right="75" Background="#FF4C2B" Content="Add tags" FontSize="26" FontWeight="Bold" Click="AddTagButtonClicked" x:Name="AddTagButton" Grid.Row="2" Grid.Column="1" Margin="6" HorizontalAlignment="Right">
                     <Button.Resources>
                         <Style TargetType="Border">
                             <Setter Property="CornerRadius" Value="10"/>
@@ -115,9 +113,18 @@
                     </Button.Resources>
                 </Button>
             </Grid>
-            <Label Content="Result:" Foreground="White" FontSize="42" FontWeight="Bold" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Canvas.Bottom="280" />
-            <TextBox Height="160" Width="810" FontSize="20" Canvas.Bottom="120" Canvas.Left="10"/>
-            <Button  Width="220" Height="50" Canvas.Left="10"  Canvas.Bottom="60" Background="#FF4C2B" Content="Create Item" FontSize="26" FontWeight="Bold" Click="CreateItemButtonClicked">
+            <Label Content="Your Item:&#10;(copy it to start up scripts):" Foreground="White" FontSize="22" FontWeight="Bold" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Canvas.Bottom="300" />
+            <Label Content="Tags to yout item:&#10;(copy it to server scripts):" Foreground="White" FontSize="22" FontWeight="Bold" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Canvas.Bottom="300" Canvas.Left="430" />
+            <TextBox Height="160" Width="410" FontSize="20" Canvas.Bottom="120" Canvas.Left="10" x:Name="TB_Result"/>
+            <TextBox Height="160" Width="410" FontSize="20" Canvas.Bottom="120" Canvas.Left="430" x:Name="TB_Tags"/>
+            <Button  Width="200" Height="50" Canvas.Left="10"  Canvas.Bottom="60" Background="#FF4C2B" Content="Create Item" FontSize="26" FontWeight="Bold" Click="CreateItemButtonClicked">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+            <Button  Width="200" Height="50" Canvas.Left="220"  Canvas.Bottom="60" Background="#FF4C2B" Content="Copy" FontSize="26" FontWeight="Bold" Click="CopyResult">
                 <Button.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="10"/>
