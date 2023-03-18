@@ -151,14 +151,13 @@ namespace MDE
             filePath = filePath.Substring(ind);
             Image.Source = bitmap;
             TB_Name.Text = filePath.Replace(".png", string.Empty);
+            TB_Texture.Text = filePath;
+            CreatingItemClass.FormatNameField(ref TB_Name);
         }
         private void CreateItemButtonClicked(object sender, RoutedEventArgs e)
         {
             if (isCorrectInput())
-            {
-                MessageBox.Show("Creating item");
-                TB_Result.Text = CreatingItemClass.CreateItem(TB_Name.Text, TB_StackSize.Text);
-            }
+                TB_Result.Text = CreatingItemClass.CreateItem(TB_Name.Text,TB_Texture.Text, TB_StackSize.Text);
             else
                 MessageBox.Show("Incorrect input");
         } 
