@@ -152,10 +152,6 @@ namespace MDE
             Image.Source = bitmap;
             TB_Name.Text = filePath.Replace(".png", string.Empty);
         }
-        private void AddTagButtonClicked(object sender, RoutedEventArgs e)
-        {
-            MessageBox.Show("adding tags");
-        }
         private void CreateItemButtonClicked(object sender, RoutedEventArgs e)
         {
             if (isCorrectInput())
@@ -170,6 +166,11 @@ namespace MDE
         {
             //
         }
+        private void ChangeContentToAddTags(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("addinf tags");
+        }
+
         private bool isCorrectInput()
         {
             if (String.IsNullOrEmpty(TB_Name.Text))
