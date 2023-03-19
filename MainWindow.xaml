@@ -126,7 +126,7 @@
                     </Style>
                 </Button.Resources>
             </Button>
-            <Button  Width="200" Height="50" Canvas.Left="220"  Canvas.Bottom="60" Background="#FF4C2B" Content="Copy" FontSize="26" FontWeight="Bold" Click="CopyResult">
+            <Button  Width="200" Height="50" Canvas.Left="220"  Canvas.Bottom="60" Background="#FF4C2B" Content="Copy" FontSize="26" FontWeight="Bold" Click="CopyResult" x:Name="copyToClipboardButton">
                 <Button.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="10"/>

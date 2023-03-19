@@ -1,10 +1,10 @@
-﻿using MDE.Types;
+﻿using MDE.Recipes_Types;
+using MDE.Types;
+using System;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
-using System;
-using System.Collections.Generic;
-using MDE.Recipes_Types;
 
 namespace MDE
 {
@@ -163,7 +163,18 @@ namespace MDE
         } 
         private void CopyResult(object sender, RoutedEventArgs e)
         {
-            //
+            if (string.IsNullOrEmpty(TB_Result.Text))
+                MessageBox.Show("Recipe is empty");
+            else
+            {
+                Clipboard.SetText(TB_Result.Text);
+                Task t = Task.Run(() => copyToClipboardButton.Dispatcher.Invoke(new Action(async delegate
+                {
+                    copyToClipboardButton.Content = "Copied";
+                    await Task.Delay(700);
+                    copyToClipboardButton.Content = "Copy";
+                })));
+            }
         }
         private void ChangeContentToAddTags(object sender, RoutedEventArgs e)
         {
