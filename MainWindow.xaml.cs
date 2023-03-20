@@ -178,7 +178,8 @@ namespace MDE
         }
         private void ChangeContentToAddTags(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("addinf tags");
+            TagsInteractingClass tagClass = new TagsInteractingClass();
+            this.Content =tagClass.Window.Content;
         }
 
         private bool isCorrectInput()
