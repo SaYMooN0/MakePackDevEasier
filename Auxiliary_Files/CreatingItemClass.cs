@@ -7,16 +7,16 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Xml.Linq;
 
-namespace MDE.Recipes_Types
+namespace MDE.Auxiliary_Files
 {
     class CreatingItemClass
     {
-        
-        public static string CreateItem(string name, string texture,  string stackSize)
+
+        public static string CreateItem(string name, string texture, string stackSize)
         {
-          
-            string str = SF.wrapInCreateEvent(texture.Replace(".png", string.Empty))+ ".displayName(\""+name+"\")" + ".texture(\""+texture+"\")" + ".maxStackSize("+stackSize+")";
-            return SF.wrapInItemRegistryEvent ("\n"+str+"\n");
+
+            string str = SF.wrapInCreateEvent(texture.Replace(".png", string.Empty)) + ".displayName(\"" + name + "\")" + ".texture(\"" + texture + "\")" + ".maxStackSize(" + stackSize + ")";
+            return SF.wrapInItemRegistryEvent("\n" + str + "\n");
         }
         public static void FormatNameField(ref TextBox TB)
         {

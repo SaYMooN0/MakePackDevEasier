@@ -4,6 +4,7 @@ using System.Windows;
 using System.Windows.Media;
 using MDE.Mods;
 using System.Windows.Input;
+using MDE.Auxiliary_Files;
 
 namespace MDE
 {

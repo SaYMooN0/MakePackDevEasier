@@ -3,7 +3,8 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
-namespace MDE
+
+namespace MDE.Auxiliary_Files
 {
     internal class SecondaryWindow
     {
@@ -29,9 +30,9 @@ namespace MDE
             Canvas.SetLeft(copyToClipboardButton, 810);
             Canvas.SetTop(copyToClipboardButton, 430);
             secondWindow.Content = c;
-            
+
         }
-        
+
         private void copyToClipboard_Click(object sender, RoutedEventArgs e)
         {
             if (string.IsNullOrEmpty(newRecipe.Text))

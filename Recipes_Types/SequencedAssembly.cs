@@ -10,6 +10,7 @@ using System.Windows;
 using System.Reflection;
 using System.Xml.Linq;
 using MDE.Mods;
+using MDE.Auxiliary_Files;
 
 namespace MDE.Types
 {

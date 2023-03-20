@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MDE
+namespace MDE.Auxiliary_Files
 {
     class RecipeTypeForCreateSequencedAssembly
     {
@@ -14,18 +14,18 @@ namespace MDE
         public int FluidAmount { get; set; }
         public RecipeTypeForCreateSequencedAssembly(type t)
         {
-            this.Type = t;
+            Type = t;
         }
         public RecipeTypeForCreateSequencedAssembly(string item)
         {
-            this.Type = type.AddingItem;
+            Type = type.AddingItem;
             Item = item;
         }
         public RecipeTypeForCreateSequencedAssembly(string fluid, int amount)
         {
-            this.Type = type.Filling;
-            Fluid= fluid;
-            FluidAmount= amount;
+            Type = type.Filling;
+            Fluid = fluid;
+            FluidAmount = amount;
         }
     }
     enum type

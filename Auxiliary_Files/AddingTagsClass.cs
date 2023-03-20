@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MDE
+namespace MDE.Auxiliary_Files
 {
     internal class AddingTagsClass
     {
