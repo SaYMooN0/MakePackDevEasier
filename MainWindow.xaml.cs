@@ -14,8 +14,10 @@ namespace MDE
     /// </summary>
     public partial class MainWindow : Window
     {
+        TagsInteractingClass tagClass;
         public MainWindow()
         {
+            tagClass = new TagsInteractingClass();
             InitializeComponent();
         }
         private void ChangeContentToCreateRecipe(object sender, RoutedEventArgs e)
@@ -36,6 +38,7 @@ namespace MDE
             this.ContentCreateRecipe.Visibility = Visibility.Hidden;
             this.ContentAddItem.Visibility = Visibility.Hidden;
             this.ReturningButton.Visibility = Visibility.Hidden;
+            this.SizeChanged -= tagPageSizeChanged;
         }
         enum recipeType { Crusher1to1, Crusher1toMany, Polishing, Pressing, Filling, Nothing, SequencedAssembly, Sawmill };
         private void CreateRecipe_Click(object sender, RoutedEventArgs e)
@@ -179,8 +182,15 @@ namespace MDE
         }
         private void ChangeContentToAddTags(object sender, RoutedEventArgs e)
         {
-            TagsInteractingClass tagClass = new TagsInteractingClass();
-            this.Content =tagClass.Window.Content;
+            //tagClass.winSizeChanged(this);
+            this.Content =tagClass.Win.Content;
+            this.SizeChanged += tagPageSizeChanged;
+        }
+        public void tagPageSizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            tagClass.winSizeChanged(this);
+            this.Content=tagClass.Win.Content;
+            //MessageBox.Show();
         }
 
         private bool isCorrectInput()
