@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Xml.Linq;
+using MDE.Auxiliary_Files;
 
-namespace MDE.Auxiliary_Files
+namespace MDE.Page_Classes
 {
     class CreatingItemClass
     {

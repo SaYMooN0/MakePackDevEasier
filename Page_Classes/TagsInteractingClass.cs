@@ -7,15 +7,15 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 
-namespace MDE.Auxiliary_Files
+namespace MDE.Page_Classes
 {
     class TagsInteractingClass
     {
 
         public Window Window { get; set; }
         Canvas mainCanvas;
-        SolidColorBrush orangeBrush = new SolidColorBrush((Color) ColorConverter.ConvertFromString("#FF4C2B"));
-        SolidColorBrush backBrush = new SolidColorBrush((Color) ColorConverter.ConvertFromString("#2D384A"));
+        SolidColorBrush orangeBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF4C2B"));
+        SolidColorBrush backBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#2D384A"));
         public TagsInteractingClass()
         {
             Window = new Window { Height = 850, Width = 900 };
